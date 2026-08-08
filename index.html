@@ -93,6 +93,7 @@
       border-bottom: 2px solid #2a2f3d;
       padding-bottom: 10px;
       overflow-x: auto;
+      align-items: center;
     }
 
     .tab-btn {
@@ -105,11 +106,25 @@
       font-weight: bold;
       transition: all 0.2s;
       white-space: nowrap;
+      text-decoration: none;
+      font-size: 0.9rem;
     }
 
     .tab-btn:hover, .tab-btn.active {
       background: #00ffff;
       color: #000;
+    }
+
+    /* DISCORD BUTTON STYLING */
+    .discord-btn {
+      background: #5865F2 !important;
+      color: #ffffff !important;
+      margin-left: auto;
+    }
+
+    .discord-btn:hover {
+      background: #4752C4 !important;
+      color: #ffffff !important;
     }
 
     .badge {
@@ -119,6 +134,7 @@
       padding: 2px 7px;
       font-size: 0.75rem;
       margin-left: 5px;
+      box-shadow: 0 0 8px #ff4757;
     }
 
     /* CONTAINER & CARDS */
@@ -387,6 +403,8 @@
     <button class="tab-btn" onclick="switchTab('clans', this)">Clans</button>
     <button class="tab-btn" onclick="switchTab('submit', this)">Submit Record</button>
     <button class="tab-btn" onclick="switchTab('inbox', this)">Inbox <span id="inboxBadge" class="badge" style="display:none;">0</span></button>
+    
+    <a href="https://discord.gg/s95NF83XTD" target="_blank" class="tab-btn discord-btn">Join Discord</a>
   </div>
 
   <main class="container">
@@ -419,6 +437,9 @@
     <div id="clansTab" class="tab-content">
       <section class="card">
         <h2 class="section-title">Clans & Total Clan XP</h2>
+        <p style="color:#a4b0be; font-size:0.85rem; margin-bottom:12px;">
+          ⚠️ You must have at least <strong style="color:#ffa502;">1000 XP</strong> to create or set a clan tag.
+        </p>
         <div style="margin-bottom: 15px;">
           <input type="text" id="clanInput" placeholder="Enter Clan Tag (e.g. [PRO])" style="width: 70%; display: inline-block;">
           <button onclick="joinClan()" class="submit-btn" style="width: 28%; display: inline-block; margin-top:0;">Set Clan</button>
@@ -529,10 +550,7 @@
         img: "society.png",
         link: "https://www.youtube.com/watch?v=3CoEaH1CM7o",
         desc: "the new hardest geometry dash level",
-        victors: [
-          { name: "@Zoink", link: "https://www.youtube.com/watch?v=3CoEaH1CM7o" },
-          { name: "@Doggie", link: "https://www.youtube.com/watch?v=3CoEaH1CM7o" }
-        ]
+        victors: []
       },
       {
         rank: 2,
@@ -540,9 +558,7 @@
         img: "ts2.png",
         link: "https://www.youtube.com/watch?v=CELNmHwln_c",
         desc: "the hardest level in geometry dash for 278 days",
-        victors: [
-          { name: "@Trick", link: "https://www.youtube.com/watch?v=CELNmHwln_c" }
-        ]
+        victors: []
       },
       {
         rank: 3,
@@ -566,10 +582,7 @@
         img: "tw.png",
         link: "https://www.youtube.com/watch?v=frjtBcNI6dI",
         desc: "has 200 frame perfects",
-        victors: [
-          { name: "@Zoink", link: "https://www.youtube.com/watch?v=frjtBcNI6dI" },
-          { name: "@wpopoff", link: "https://www.youtube.com/watch?v=frjtBcNI6dI" }
-        ]
+        victors: []
       },
       {
         rank: 6,
@@ -577,9 +590,7 @@
         img: "gb.png",
         link: "https://www.youtube.com/watch?v=zfTqKYeqhTo",
         desc: "the person who beat the level (nicknam09) took 105,000 attempts+ to beat the level",
-        victors: [
-          { name: "@nicknam09", link: "https://www.youtube.com/watch?v=zfTqKYeqhTo" }
-        ]
+        victors: []
       },
       {
         rank: 7,
@@ -615,14 +626,11 @@
       }
     ];
 
+    // Returns user database (Starts empty)
     function getDBUsers() {
       const users = localStorage.getItem('gd_demon_users');
       if (!users) {
-        // Pre-seed default players (excluding @pandy so you can claim it)
-        const initialUsers = {
-          "@Zoink": { username: "@Zoink", password: "123", xp: 5000, levelsBeat: ["society", "tidal wave"], clan: "[TOP]", inbox: [] },
-          "@Trick": { username: "@Trick", password: "123", xp: 3200, levelsBeat: ["thinking space 2"], clan: "[TOP]", inbox: [] }
-        };
+        const initialUsers = {};
         localStorage.setItem('gd_demon_users', JSON.stringify(initialUsers));
         return initialUsers;
       }
@@ -683,10 +691,12 @@
         `;
         authBtns.innerHTML = `<button class="logout" onclick="logout()">Logout</button>`;
 
-        // Update Inbox Badge
+        // Count only UNREAD messages for badge display
         const badge = document.getElementById('inboxBadge');
-        if (u.inbox && u.inbox.length > 0) {
-          badge.textContent = u.inbox.length;
+        const unreadCount = u.inbox ? u.inbox.filter(m => !m.read).length : 0;
+        
+        if (unreadCount > 0) {
+          badge.textContent = unreadCount;
           badge.style.display = 'inline-block';
         } else {
           badge.style.display = 'none';
@@ -709,14 +719,13 @@
 
       const users = getDBUsers();
       
-      // Block registration only if account has a non-empty password already set
       if (users[user] && users[user].password !== "") {
         alert('Username already exists!');
         return;
       }
 
       // Preserve inbox if items were queued before registering
-      const existingInbox = users[user] ? users[user].inbox : [{ from: "System", message: "Welcome to the Demon List! Complete levels to earn XP." }];
+      const existingInbox = users[user] ? users[user].inbox : [{ from: "System", message: "Welcome to the Demon List! Complete levels to earn XP.", read: false }];
 
       users[user] = {
         username: user,
@@ -776,10 +785,10 @@
       const notification = {
         from: submitter,
         message: `New record submission for ${demon} (${progress}%)!\nVideo: ${video}\nNotes: ${notes}`,
-        date: new Date().toLocaleTimeString()
+        date: new Date().toLocaleTimeString(),
+        read: false // New unread message flag
       };
 
-      // Queue for @pandy even if @pandy isn't registered yet
       if (!users["@pandy"]) {
         users["@pandy"] = {
           username: "@pandy",
@@ -814,6 +823,20 @@
         return;
       }
 
+      // Mark all messages as read when viewing inbox
+      let updated = false;
+      user.inbox.forEach(msg => {
+        if (!msg.read) {
+          msg.read = true;
+          updated = true;
+        }
+      });
+
+      if (updated) {
+        saveDBUsers(users);
+        updateAuthUI(); // Clear the red badge immediately
+      }
+
       container.innerHTML = user.inbox.map(msg => `
         <div class="inbox-item">
           <h4>From: ${msg.from} <span style="font-size:0.75rem; color:#a4b0be; float:right;">${msg.date || ''}</span></h4>
@@ -833,7 +856,7 @@
 
       const tbody = document.getElementById('leaderboardBody');
       if (userList.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="5" style="color:#a4b0be;">No registered players yet.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="5" style="color:#a4b0be; text-align:center;">No real registered players yet. Be the first to register!</td></tr>`;
         return;
       }
 
@@ -849,17 +872,32 @@
     }
 
     function joinClan() {
-      if (!currentUser) { alert('Please log in first!'); return; }
-      const clanTag = document.getElementById('clanInput').value.trim();
+      if (!currentUser) { 
+        alert('Please log in first!'); 
+        return; 
+      }
 
       const users = getDBUsers();
+      const user = users[currentUser];
+
+      if (!user || user.xp < 1000) {
+        alert(`You need at least 1000 XP to create or join a clan! (You currently have ${user ? user.xp : 0} XP)`);
+        return;
+      }
+
+      const clanTag = document.getElementById('clanInput').value.trim();
+      if (!clanTag) {
+        alert('Please enter a valid clan tag.');
+        return;
+      }
+
       users[currentUser].clan = clanTag;
       saveDBUsers(users);
 
       updateAuthUI();
       renderClans();
       renderLeaderboards();
-      alert(`Clan updated to ${clanTag}!`);
+      alert(`Clan tag successfully updated to ${clanTag}!`);
     }
 
     function renderClans() {
@@ -880,7 +918,7 @@
 
       const tbody = document.getElementById('clanBody');
       if (clanList.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="3" style="color:#a4b0be;">No clans formed yet.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="3" style="color:#a4b0be; text-align:center;">No real clans formed yet. Reach 1000 XP to create one!</td></tr>`;
         return;
       }
 
@@ -948,7 +986,7 @@
       openModal('victorsModal');
     }
 
-    // Close modal on outside click
+    // Close modal when clicking outside
     window.onclick = function(event) {
       if (event.target.classList.contains('modal-overlay')) {
         event.target.style.display = 'none';

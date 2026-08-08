@@ -608,12 +608,13 @@
   </div>
 
   <div class="nav-tabs">
-    <button class="tab-btn active" onclick="switchTab('list', this)">Top Levels</button>
+    <button class="tab-btn active" onclick="switchTab('list', this)">Demon List</button>
     <button class="tab-btn" onclick="switchTab('leaderboards', this)">Leaderboards</button>
     <button class="tab-btn" onclick="switchTab('clans', this)">Clans</button>
     <button class="tab-btn" onclick="switchTab('social', this)">Social Feed</button>
     <button class="tab-btn" onclick="switchTab('featured', this)" style="color:#f1c40f;">⭐ Featured Hub</button>
     <button class="tab-btn" onclick="switchTab('messages', this)">💬 Messages & Friends</button>
+    <button class="tab-btn" onclick="switchTab('addDemonDirect', this)" style="color:#00ffff;">➕ Add Level</button>
     <button class="tab-btn" onclick="switchTab('submit', this)">Submit Record</button>
     <button class="tab-btn" onclick="switchTab('submitLevel', this)">Submit Custom Level</button>
     <button class="tab-btn" onclick="switchTab('inbox', this)">Inbox <span id="inboxBadge" class="badge" style="display:none;">0</span></button>
@@ -632,7 +633,7 @@
       
       <div id="listTab" class="tab-content active">
         <section class="card">
-          <h2 class="section-title">Top Levels</h2>
+          <h2 class="section-title">Demon List</h2>
           <div id="demon-list"></div>
         </section>
       </div>
@@ -747,6 +748,33 @@
         </section>
       </div>
 
+      <div id="addDemonDirectTab" class="tab-content">
+        <section class="card">
+          <h2 class="section-title" style="color:#00ffff; border-color:#00ffff;">➕ Add Level Directly to Demon List</h2>
+          <p style="color:#a4b0be; margin-bottom:15px; font-size:0.9rem;">
+            Add a new level directly to the official Demon List without editing the source code.
+          </p>
+          <form onsubmit="handleDirectAddDemon(event)">
+            <label>Rank Position:</label>
+            <input type="number" id="directRank" min="1" placeholder="e.g. 1" required>
+
+            <label>Level Name:</label>
+            <input type="text" id="directName" placeholder="e.g. Slaughterhouse" required>
+
+            <label>Description:</label>
+            <textarea id="directDesc" rows="2" placeholder="Brief level details or difficulty..." required></textarea>
+
+            <label>Video / Showcase Link:</label>
+            <input type="url" id="directVideo" placeholder="https://www.youtube.com/watch?v=..." required>
+
+            <label>Thumbnail Image URL or Filename:</label>
+            <input type="text" id="directImg" placeholder="society.png or image URL" required>
+
+            <button type="submit" class="submit-btn" style="background:#00ffff; color:#000;">Add Level to Demon List</button>
+          </form>
+        </section>
+      </div>
+
       <div id="submitTab" class="tab-content">
         <section class="card">
           <h2 class="section-title">Submit a Record</h2>
@@ -793,7 +821,7 @@
             <label>Verification / Showcase Video Link:</label>
             <input type="url" id="propLevelVideo" placeholder="https://www.youtube.com/watch?v=..." required>
 
-            <label>Thumbnail Image File/URL (Optional):</label>
+            <label>Thumbnail Image URL or Filename (Optional):</label>
             <input type="text" id="propLevelImg" placeholder="image.png or URL (default: default.png)">
 
             <button type="submit" class="submit-btn" style="background:#70a1ff;">Submit Level for Review</button>
@@ -1277,6 +1305,48 @@
       localStorage.removeItem('gd_current_user');
       updateAuthUI();
       switchTab('list');
+    }
+
+    /* DIRECT ADD DEMON LEVEL */
+    function handleDirectAddDemon(e) {
+      e.preventDefault();
+      checkKickOrBanStatus();
+      if (!currentUser) return alert('Please log in first!');
+
+      const rank = parseInt(document.getElementById('directRank').value);
+      const name = document.getElementById('directName').value.trim();
+      const desc = document.getElementById('directDesc').value.trim();
+      const link = document.getElementById('directVideo').value.trim();
+      const img = document.getElementById('directImg').value.trim();
+
+      const demonList = getDemonList();
+
+      const newLevel = {
+        rank: rank,
+        name: name,
+        img: img,
+        link: link,
+        desc: desc,
+        victors: [],
+        isFeatured: false
+      };
+
+      demonList.forEach(d => {
+        if (d.rank >= rank) d.rank += 1;
+      });
+
+      demonList.push(newLevel);
+      demonList.sort((a, b) => a.rank - b.rank);
+
+      demonList.forEach((d, idx) => {
+        d.rank = idx + 1;
+      });
+
+      saveDemonList(demonList);
+      renderDemonList();
+      e.target.reset();
+      alert(`Level "${name}" successfully added to the Demon List at Rank #${rank}!`);
+      switchTab('list', document.querySelector('.nav-tabs button'));
     }
 
     /* SOCIAL FEED LOGIC & INTERACTIONS */

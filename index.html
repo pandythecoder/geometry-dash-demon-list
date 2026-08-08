@@ -19,7 +19,7 @@
     }
 
     header {
-      max-width: 900px;
+      max-width: 1150px;
       margin: 0 auto 15px auto;
       text-align: center;
       padding: 25px 10px;
@@ -42,7 +42,7 @@
 
     /* AUTH BAR */
     .auth-bar {
-      max-width: 900px;
+      max-width: 1150px;
       margin: 0 auto 20px auto;
       background: #161922;
       border: 1px solid #2a2f3d;
@@ -51,6 +51,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .user-badge {
@@ -75,6 +77,8 @@
     .role-admin { background: #ff4757; color: #fff; }
     .role-leaderboard-mod { background: #1e90ff; color: #fff; }
     .role-mod { background: #ffa502; color: #000; }
+    .role-social-mod { background: #e056fd; color: #fff; box-shadow: 0 0 6px #e056fd; }
+    .role-featured-picker { background: linear-gradient(45deg, #f1c40f, #e67e22); color: #000; box-shadow: 0 0 6px #f1c40f; }
     .role-user { background: #2ed573; color: #000; }
 
     .xp-pill {
@@ -109,7 +113,7 @@
 
     /* NAVIGATION TABS */
     .nav-tabs {
-      max-width: 900px;
+      max-width: 1150px;
       margin: 0 auto 20px auto;
       display: flex;
       gap: 10px;
@@ -138,45 +142,25 @@
       color: #000;
     }
 
-    .tab-btn.admin-tab-btn {
-      background: #3d1218;
-      color: #ff4757;
-      border: 1px solid #ff4757;
-    }
-    .tab-btn.admin-tab-btn:hover, .tab-btn.admin-tab-btn.active {
-      background: #ff4757;
-      color: #fff;
-    }
+    .tab-btn.admin-tab-btn { background: #3d1218; color: #ff4757; border: 1px solid #ff4757; }
+    .tab-btn.admin-tab-btn:hover, .tab-btn.admin-tab-btn.active { background: #ff4757; color: #fff; }
 
-    .tab-btn.mod-tab-btn {
-      background: #3b2b11;
-      color: #ffa502;
-      border: 1px solid #ffa502;
-    }
-    .tab-btn.mod-tab-btn:hover, .tab-btn.mod-tab-btn.active {
-      background: #ffa502;
-      color: #000;
-    }
+    .tab-btn.mod-tab-btn { background: #3b2b11; color: #ffa502; border: 1px solid #ffa502; }
+    .tab-btn.mod-tab-btn:hover, .tab-btn.mod-tab-btn.active { background: #ffa502; color: #000; }
 
-    .tab-btn.lmod-tab-btn {
-      background: #10263e;
-      color: #1e90ff;
-      border: 1px solid #1e90ff;
-    }
-    .tab-btn.lmod-tab-btn:hover, .tab-btn.lmod-tab-btn.active {
-      background: #1e90ff;
-      color: #fff;
-    }
+    .tab-btn.lmod-tab-btn { background: #10263e; color: #1e90ff; border: 1px solid #1e90ff; }
+    .tab-btn.lmod-tab-btn:hover, .tab-btn.lmod-tab-btn.active { background: #1e90ff; color: #fff; }
+
+    .tab-btn.smod-tab-btn { background: #32143a; color: #e056fd; border: 1px solid #e056fd; }
+    .tab-btn.smod-tab-btn:hover, .tab-btn.smod-tab-btn.active { background: #e056fd; color: #fff; }
+
+    .tab-btn.fpicker-tab-btn { background: #3a2e05; color: #f1c40f; border: 1px solid #f1c40f; }
+    .tab-btn.fpicker-tab-btn:hover, .tab-btn.fpicker-tab-btn.active { background: #f1c40f; color: #000; }
 
     .discord-btn {
       background: #5865F2 !important;
       color: #ffffff !important;
       margin-left: auto;
-    }
-
-    .discord-btn:hover {
-      background: #4752C4 !important;
-      color: #ffffff !important;
     }
 
     .badge {
@@ -187,19 +171,73 @@
       font-size: 0.75rem;
       margin-left: 6px;
       font-weight: bold;
-      box-shadow: 0 0 10px #ff4757;
-      animation: pulse-aura 1.5s infinite alternate;
     }
 
-    @keyframes pulse-aura {
-      0% { box-shadow: 0 0 5px #ff4757; }
-      100% { box-shadow: 0 0 15px #ff4757; }
+    /* LAYOUT WITH SIDEBAR */
+    .main-layout {
+      max-width: 1150px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    @media (max-width: 850px) {
+      .main-layout {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        position: static !important;
+      }
+    }
+
+    /* STICKY SIDEBAR */
+    .sidebar {
+      position: sticky;
+      top: 20px;
+      background: #161922;
+      border: 1px solid #2a2f3d;
+      border-radius: 10px;
+      padding: 15px;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    .sidebar-title {
+      font-size: 1.2rem;
+      color: #00ffff;
+      border-bottom: 2px solid #00ffff;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .staff-card {
+      background: #1f2430;
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+    }
+
+    .staff-card .staff-name {
+      font-weight: bold;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .staff-card .staff-stats {
+      color: #a4b0be;
+      font-size: 0.78rem;
     }
 
     /* CONTAINER & CARDS */
     .container {
-      max-width: 900px;
-      margin: 0 auto;
+      width: 100%;
     }
 
     .tab-content {
@@ -375,8 +413,115 @@
     .btn-warn { background: #ffa502; color: #000; }
     .btn-success { background: #2ed573; color: #000; }
     .btn-primary { background: #70a1ff; color: #000; }
+    .btn-feature { background: #f1c40f; color: #000; }
 
-    /* INBOX ITEMS */
+    /* SOCIAL FEED STYLES */
+    .social-post {
+      background: #1f2430;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 15px;
+      border: 1px solid #2a2f3d;
+      position: relative;
+    }
+
+    .social-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .social-author-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .social-author {
+      font-weight: bold;
+      color: #00ffff;
+      font-size: 0.95rem;
+    }
+
+    .social-time {
+      font-size: 0.75rem;
+      color: #a4b0be;
+    }
+
+    .social-media-container {
+      margin-top: 10px;
+      max-width: 100%;
+    }
+
+    .social-media-container img,
+    .social-media-container video,
+    .social-media-container audio {
+      max-width: 100%;
+      border-radius: 6px;
+      margin-top: 5px;
+      display: block;
+    }
+
+    .social-media-container audio {
+      width: 100%;
+    }
+
+    .social-actions {
+      display: flex;
+      gap: 15px;
+      margin-top: 12px;
+      padding-top: 8px;
+      border-top: 1px solid #2a2f3d;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      background: transparent;
+      border: none;
+      color: #a4b0be;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .action-btn:hover { color: #00ffff; }
+    .action-btn.liked { color: #ff4757; }
+
+    .comment-section {
+      margin-top: 12px;
+      background: #161922;
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    .comment-item {
+      font-size: 0.85rem;
+      padding: 4px 0;
+      border-bottom: 1px solid #2a2f3d;
+    }
+
+    .comment-item:last-child { border-bottom: none; }
+
+    .featured-ribbon {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      background: linear-gradient(45deg, #f1c40f, #e67e22);
+      color: #000;
+      font-size: 0.7rem;
+      font-weight: bold;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      box-shadow: 0 0 8px rgba(241,196,15,0.6);
+    }
+
+    /* INBOX & PMs */
     .inbox-item {
       background: #1f2430;
       border-left: 4px solid #00ffff;
@@ -396,7 +541,7 @@
       .admin-grid { grid-template-columns: 1fr; }
     }
 
-    /* MODAL POPUPS */
+    /* MODALS */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -466,10 +611,15 @@
     <button class="tab-btn active" onclick="switchTab('list', this)">Top Levels</button>
     <button class="tab-btn" onclick="switchTab('leaderboards', this)">Leaderboards</button>
     <button class="tab-btn" onclick="switchTab('clans', this)">Clans</button>
+    <button class="tab-btn" onclick="switchTab('social', this)">Social Feed</button>
+    <button class="tab-btn" onclick="switchTab('featured', this)" style="color:#f1c40f;">⭐ Featured Hub</button>
+    <button class="tab-btn" onclick="switchTab('messages', this)">💬 Messages & Friends</button>
     <button class="tab-btn" onclick="switchTab('submit', this)">Submit Record</button>
     <button class="tab-btn" onclick="switchTab('submitLevel', this)">Submit Custom Level</button>
     <button class="tab-btn" onclick="switchTab('inbox', this)">Inbox <span id="inboxBadge" class="badge" style="display:none;">0</span></button>
     
+    <button id="fpickerTabBtn" class="tab-btn fpicker-tab-btn" style="display:none;" onclick="switchTab('fpicker', this)">Featured Picker Panel</button>
+    <button id="smodTabBtn" class="tab-btn smod-tab-btn" style="display:none;" onclick="switchTab('smod', this)">Social Mod Panel</button>
     <button id="lmodTabBtn" class="tab-btn lmod-tab-btn" style="display:none;" onclick="switchTab('lmod', this)">Leaderboard Mod Panel</button>
     <button id="modTabBtn" class="tab-btn mod-tab-btn" style="display:none;" onclick="switchTab('mod', this)">Mod Panel</button>
     <button id="adminTabBtn" class="tab-btn admin-tab-btn" style="display:none;" onclick="switchTab('admin', this)">Admin Panel</button>
@@ -477,204 +627,303 @@
     <a href="https://discord.gg/s95NF83XTD" target="_blank" class="tab-btn discord-btn">Join Discord</a>
   </div>
 
-  <main class="container">
-    
-    <div id="listTab" class="tab-content active">
-      <section class="card">
-        <h2 class="section-title">Top Levels</h2>
-        <div id="demon-list"></div>
-      </section>
-    </div>
+  <div class="main-layout">
+    <main class="container">
+      
+      <div id="listTab" class="tab-content active">
+        <section class="card">
+          <h2 class="section-title">Top Levels</h2>
+          <div id="demon-list"></div>
+        </section>
+      </div>
 
-    <div id="leaderboardsTab" class="tab-content">
-      <section class="card">
-        <h2 class="section-title">Player Rankings (XP & Demons)</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Player</th>
-              <th>Role</th>
-              <th>Clan</th>
-              <th>XP</th>
-              <th>Demons Beat</th>
-            </tr>
-          </thead>
-          <tbody id="leaderboardBody"></tbody>
-        </table>
-      </section>
-    </div>
+      <div id="leaderboardsTab" class="tab-content">
+        <section class="card">
+          <h2 class="section-title">Player Rankings (XP & Demons)</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Player</th>
+                <th>Role</th>
+                <th>Clan</th>
+                <th>XP</th>
+                <th>Demons Beat</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboardBody"></tbody>
+          </table>
+        </section>
+      </div>
 
-    <div id="clansTab" class="tab-content">
-      <section class="card">
-        <h2 class="section-title">Clans & Total Clan XP</h2>
-        <p style="color:#a4b0be; font-size:0.85rem; margin-bottom:12px;">
-          ⚠️ You must have at least <strong style="color:#ffa502;">1000 XP</strong> to set a clan tag.
-        </p>
-        <div style="margin-bottom: 15px;">
-          <input type="text" id="clanInput" placeholder="Enter Clan Tag (e.g. [PRO])" style="width: 70%; display: inline-block;">
-          <button onclick="joinClan()" class="submit-btn" style="width: 28%; display: inline-block; margin-top:0;">Set Clan</button>
-        </div>
-        <table>
-          <thead>
-            <tr>
-              <th>Clan Tag</th>
-              <th>Members</th>
-              <th>Total XP</th>
-            </tr>
-          </thead>
-          <tbody id="clanBody"></tbody>
-        </table>
-      </section>
-    </div>
-
-    <div id="submitTab" class="tab-content">
-      <section class="card">
-        <h2 class="section-title">Submit a Record</h2>
-        <div class="rules-box">
-          <h3>Submission Rules</h3>
-          <ul>
-            <li><strong>Min Progress:</strong> 50% or higher required.</li>
-            <li><strong>Cheat Indicator:</strong> Must be visibly active on-screen.</li>
-            <li><strong>Audio:</strong> Raw clicks/taps must be clear.</li>
-            <li><strong>Proof:</strong> Video hosted on YouTube or Twitch.</li>
-          </ul>
-        </div>
-        <form onsubmit="handleSubmission(event)">
-          <label>Demon Defeated:</label>
-          <select id="submitDemon" required></select>
-
-          <label>Progress Percentage (%):</label>
-          <input type="number" id="submitProgress" min="50" max="100" placeholder="50 - 100" required>
-
-          <label>Video Proof Link:</label>
-          <input type="url" id="submitVideo" placeholder="https://www.youtube.com/watch?v=..." required>
-
-          <label>Additional Notes:</label>
-          <textarea id="submitNotes" rows="2" placeholder="FPS, device, raw video link..."></textarea>
-
-          <button type="submit" class="submit-btn">Send Submission to Moderation Staff</button>
-        </form>
-      </section>
-    </div>
-
-    <div id="submitLevelTab" class="tab-content">
-      <section class="card">
-        <h2 class="section-title" style="color:#00ffff; border-color:#00ffff;">🛠️ Submit a Custom Created Level</h2>
-        <p style="color:#a4b0be; margin-bottom:15px; font-size:0.9rem;">
-          Created a new top level? Submit it here! Leaderboard Mods and Admins will review it and decide where to place it on the Demon List.
-        </p>
-        <form onsubmit="handleLevelProposal(event)">
-          <label>Level Name:</label>
-          <input type="text" id="propLevelName" placeholder="e.g. Acheron 2" required>
-
-          <label>Level Description / Lore:</label>
-          <textarea id="propLevelDesc" rows="2" placeholder="Brief level description or features..." required></textarea>
-
-          <label>Verification / Showcase Video Link:</label>
-          <input type="url" id="propLevelVideo" placeholder="https://www.youtube.com/watch?v=..." required>
-
-          <label>Thumbnail Image File/URL (Optional):</label>
-          <input type="text" id="propLevelImg" placeholder="image.png or URL (default: default.png)">
-
-          <button type="submit" class="submit-btn" style="background:#70a1ff;">Submit Level for Review</button>
-        </form>
-      </section>
-    </div>
-
-    <div id="inboxTab" class="tab-content">
-      <section class="card">
-        <h2 class="section-title">Your Inbox</h2>
-        <div id="inboxContainer"></div>
-      </section>
-    </div>
-
-    <div id="lmodTab" class="tab-content">
-      <section class="card">
-        <h2 class="section-title" style="color:#1e90ff; border-color:#1e90ff;">📊 Leaderboard Mod Control Panel</h2>
-        <p style="color:#a4b0be; margin-bottom:15px; font-size:0.9rem;">
-          Review proposed custom levels submitted by players and place them onto the Demon List at specific ranks.
-        </p>
-        
-        <h3>Proposed Levels Queue</h3>
-        <div id="lmodLevelQueueContainer" style="margin-top:10px;"></div>
-      </section>
-    </div>
-
-    <div id="modTab" class="tab-content">
-      <section class="card">
-        <h2 class="section-title" style="color:#ffa502; border-color:#ffa502;">🛡️ Moderation Control Panel</h2>
-        <p style="color:#a4b0be; margin-bottom:15px; font-size:0.9rem;">Review record submissions and manage player moderation.</p>
-
-        <h3 style="margin-bottom:10px;">Pending Record Submissions</h3>
-        <div id="modSubmissionsContainer" style="margin-bottom:25px;"></div>
-
-        <h3 style="margin-bottom:10px;">Player Moderation Actions (Kick / Ban)</h3>
-        <div style="background:#1f2430; padding:15px; border-radius:8px;">
-          <label>Target Username:</label>
-          <input type="text" id="modTargetUser" placeholder="@username">
-          <div style="display:flex; gap:10px; margin-top:10px;">
-            <button onclick="modAction('kick')" class="btn-small btn-warn" style="flex:1; padding:8px;">Kick User (Force Logout)</button>
-            <button onclick="modAction('ban')" class="btn-small btn-danger" style="flex:1; padding:8px;">Ban User</button>
+      <div id="clansTab" class="tab-content">
+        <section class="card">
+          <h2 class="section-title">Clans & Total Clan XP</h2>
+          <p style="color:#a4b0be; font-size:0.85rem; margin-bottom:12px;">
+            ⚠️ You must have at least <strong style="color:#ffa502;">1000 XP</strong> to set a clan tag.
+          </p>
+          <div style="margin-bottom: 15px;">
+            <input type="text" id="clanInput" placeholder="Enter Clan Tag (e.g. [PRO])" style="width: 70%; display: inline-block;">
+            <button onclick="joinClan()" class="submit-btn" style="width: 28%; display: inline-block; margin-top:0;">Set Clan</button>
           </div>
-        </div>
-      </section>
-    </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Clan Tag</th>
+                <th>Members</th>
+                <th>Total XP</th>
+              </tr>
+            </thead>
+            <tbody id="clanBody"></tbody>
+          </table>
+        </section>
+      </div>
 
-    <div id="adminTab" class="tab-content">
-      <section class="card">
-        <h2 class="section-title" style="color:#ff4757; border-color:#ff4757;">👑 Administrator Dashboard</h2>
-        <p style="color:#a4b0be; margin-bottom:15px; font-size:0.9rem;">Full community administration controls.</p>
+      <div id="socialTab" class="tab-content">
+        <section class="card">
+          <h2 class="section-title" style="color:#e056fd; border-color:#e056fd;">🌟 Community Social Feed</h2>
+          <p style="color:#a4b0be; font-size:0.9rem; margin-bottom:15px;">
+            Share updates, text posts, images, audio files, or any video format with the community! Follow users and make friends.
+          </p>
 
-        <div class="admin-grid">
-          <div style="background:#1f2430; padding:15px; border-radius:8px;">
-            <h3 style="color:#00ffff; font-size:1rem; margin-bottom:8px;">Award Demon Record</h3>
-            <label>Target Username:</label>
-            <input type="text" id="adminAwardUser" placeholder="@username">
-            <label>Demon Level:</label>
-            <select id="adminAwardDemon"></select>
-            <button onclick="adminAwardDemon()" class="submit-btn btn-success">Grant Completion & XP</button>
+          <div style="background:#1f2430; padding:15px; border-radius:8px; margin-bottom:20px;">
+            <form onsubmit="handleSocialPost(event)">
+              <label>What's on your mind?</label>
+              <textarea id="socialText" rows="3" placeholder="Write a text message or add media below..."></textarea>
+              
+              <label>Attach Media File (Any video format, image, or sound):</label>
+              <input type="file" id="socialFile" accept="video/*,image/*,audio/*,application/*">
+              
+              <button type="submit" class="submit-btn" style="background:#e056fd; color:#fff;">Post to Social Feed</button>
+            </form>
           </div>
 
-          <div style="background:#1f2430; padding:15px; border-radius:8px;">
-            <h3 style="color:#ffa502; font-size:1rem; margin-bottom:8px;">Remove / Modify Player XP</h3>
-            <label>Target Username:</label>
-            <input type="text" id="adminXPUser" placeholder="@username">
-            <label>XP Amount (use negative numbers like -500 to subtract):</label>
-            <input type="number" id="adminXPAmount" placeholder="e.g. -1000 or 500">
-            <div style="display:flex; gap:8px; margin-top:10px;">
-              <button onclick="adminModifyXP()" class="btn-small btn-warn" style="flex:1; padding:8px;">Adjust XP</button>
-              <button onclick="adminResetXP()" class="btn-small btn-danger" style="flex:1; padding:8px;">Reset All XP to 0</button>
+          <div id="socialFeedContainer"></div>
+        </section>
+      </div>
+
+      <div id="featuredTab" class="tab-content">
+        <section class="card">
+          <h2 class="section-title" style="color:#f1c40f; border-color:#f1c40f;">⭐ Featured Hub</h2>
+          <p style="color:#a4b0be; font-size:0.9rem; margin-bottom:15px;">
+            Explore hand-picked featured social posts and featured custom levels selected by our Featured Pickers!
+          </p>
+
+          <h3 style="color:#00ffff; margin-bottom:10px;">Featured Social Posts</h3>
+          <div id="featuredSocialContainer" style="margin-bottom:25px;"></div>
+
+          <h3 style="color:#eccc68; margin-bottom:10px;">Featured Custom Levels</h3>
+          <div id="featuredLevelsContainer"></div>
+        </section>
+      </div>
+
+      <div id="messagesTab" class="tab-content">
+        <section class="card">
+          <h2 class="section-title" style="color:#70a1ff; border-color:#70a1ff;">💬 Friends & Private Messaging</h2>
+          <p style="color:#a4b0be; font-size:0.9rem; margin-bottom:15px;">
+            Connect with other users, manage your friends list, and send direct private messages.
+          </p>
+
+          <div class="admin-grid" style="margin-bottom:20px;">
+            <div style="background:#1f2430; padding:15px; border-radius:8px;">
+              <h3 style="color:#00ffff; font-size:1rem; margin-bottom:8px;">Add Friend</h3>
+              <input type="text" id="friendInput" placeholder="@username">
+              <button onclick="addFriend()" class="submit-btn btn-primary" style="margin-top:10px;">Add Friend</button>
+            </div>
+            <div style="background:#1f2430; padding:15px; border-radius:8px;">
+              <h3 style="color:#ffa502; font-size:1rem; margin-bottom:8px;">Your Friends List</h3>
+              <div id="friendsListContainer" style="max-height:120px; overflow-y:auto; font-size:0.9rem;"></div>
             </div>
           </div>
-        </div>
 
-        <div style="background:#1f2430; padding:15px; border-radius:8px; margin-top:15px;">
-          <h3 style="color:#2ed573; font-size:1rem; margin-bottom:8px;">Broadcast System Message</h3>
-          <textarea id="adminBroadcastText" rows="2" placeholder="Message to send to ALL user inboxes..."></textarea>
-          <button onclick="adminBroadcast()" class="submit-btn btn-primary">Send Announcement</button>
-        </div>
+          <div style="background:#1f2430; padding:15px; border-radius:8px;">
+            <h3 style="color:#2ed573; font-size:1rem; margin-bottom:8px;">Send Private Message</h3>
+            <label>Recipient Username:</label>
+            <input type="text" id="pmRecipient" placeholder="@username">
+            <label>Message:</label>
+            <textarea id="pmText" rows="2" placeholder="Write private message..."></textarea>
+            <button onclick="sendPrivateMessage()" class="submit-btn btn-success" style="margin-top:10px;">Send Private Message</button>
+          </div>
+        </section>
+      </div>
 
-        <h3 style="margin-top:25px; margin-bottom:10px;">User Accounts & Role Management</h3>
-        <p style="font-size:0.8rem; color:#ffa502; margin-bottom:10px;">
-          ℹ️ Note: Only <strong>@pandy</strong> can assign roles or ban staff members.
-        </p>
-        <table>
-          <thead>
-            <tr>
-              <th>User</th>
-              <th>Role</th>
-              <th>XP</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="adminUserTable"></tbody>
-        </table>
-      </section>
-    </div>
+      <div id="submitTab" class="tab-content">
+        <section class="card">
+          <h2 class="section-title">Submit a Record</h2>
+          <div class="rules-box">
+            <h3>Submission Rules</h3>
+            <ul>
+              <li><strong>Min Progress:</strong> 50% or higher required.</li>
+              <li><strong>Cheat Indicator:</strong> Must be visibly active on-screen.</li>
+              <li><strong>Audio:</strong> Raw clicks/taps must be clear.</li>
+              <li><strong>Proof:</strong> Video hosted on YouTube or Twitch.</li>
+            </ul>
+          </div>
+          <form onsubmit="handleSubmission(event)">
+            <label>Demon Defeated:</label>
+            <select id="submitDemon" required></select>
 
-  </main>
+            <label>Progress Percentage (%):</label>
+            <input type="number" id="submitProgress" min="50" max="100" placeholder="50 - 100" required>
+
+            <label>Video Proof Link:</label>
+            <input type="url" id="submitVideo" placeholder="https://www.youtube.com/watch?v=..." required>
+
+            <label>Additional Notes:</label>
+            <textarea id="submitNotes" rows="2" placeholder="FPS, device, raw video link..."></textarea>
+
+            <button type="submit" class="submit-btn">Send Submission to Moderation Staff</button>
+          </form>
+        </section>
+      </div>
+
+      <div id="submitLevelTab" class="tab-content">
+        <section class="card">
+          <h2 class="section-title" style="color:#00ffff; border-color:#00ffff;">🛠️ Submit a Custom Created Level</h2>
+          <p style="color:#a4b0be; margin-bottom:15px; font-size:0.9rem;">
+            Created a new top level? Submit it here! Leaderboard Mods and Admins will review it and decide where to place it on the Demon List.
+          </p>
+          <form onsubmit="handleLevelProposal(event)">
+            <label>Level Name:</label>
+            <input type="text" id="propLevelName" placeholder="e.g. Acheron 2" required>
+
+            <label>Level Description / Lore:</label>
+            <textarea id="propLevelDesc" rows="2" placeholder="Brief level description or features..." required></textarea>
+
+            <label>Verification / Showcase Video Link:</label>
+            <input type="url" id="propLevelVideo" placeholder="https://www.youtube.com/watch?v=..." required>
+
+            <label>Thumbnail Image File/URL (Optional):</label>
+            <input type="text" id="propLevelImg" placeholder="image.png or URL (default: default.png)">
+
+            <button type="submit" class="submit-btn" style="background:#70a1ff;">Submit Level for Review</button>
+          </form>
+        </section>
+      </div>
+
+      <div id="inboxTab" class="tab-content">
+        <section class="card">
+          <h2 class="section-title">Your Inbox</h2>
+          <div id="inboxContainer"></div>
+        </section>
+      </div>
+
+      <div id="fpickerTab" class="tab-content">
+        <section class="card">
+          <h2 class="section-title" style="color:#f1c40f; border-color:#f1c40f;">⭐ Featured Picker Control Panel</h2>
+          <p style="color:#a4b0be; margin-bottom:15px; font-size:0.9rem;">
+            Review viewer feature requests and feature/unfeature outstanding social posts or custom levels.
+          </p>
+
+          <h3 style="margin-bottom:10px; color:#00ffff;">Viewer Feature Requests Queue</h3>
+          <div id="featureRequestsQueueContainer" style="margin-bottom:25px;"></div>
+
+          <h3 style="margin-bottom:10px; color:#e056fd;">All Social Posts (Manage Featured Status)</h3>
+          <div id="fpickerSocialContainer"></div>
+        </section>
+      </div>
+
+      <div id="smodTab" class="tab-content">
+        <section class="card">
+          <h2 class="section-title" style="color:#e056fd; border-color:#e056fd;">🎨 Social Mod Control Panel</h2>
+          <p style="color:#a4b0be; margin-bottom:15px; font-size:0.9rem;">
+            Monitor social feed posts and remove inappropriate or edgy content to keep the community wholesome.
+          </p>
+          <div id="smodFeedContainer"></div>
+        </section>
+      </div>
+
+      <div id="lmodTab" class="tab-content">
+        <section class="card">
+          <h2 class="section-title" style="color:#1e90ff; border-color:#1e90ff;">📊 Leaderboard Mod Control Panel</h2>
+          <p style="color:#a4b0be; margin-bottom:15px; font-size:0.9rem;">
+            Review proposed custom levels submitted by players and place them onto the Demon List at specific ranks.
+          </p>
+          <h3>Proposed Levels Queue</h3>
+          <div id="lmodLevelQueueContainer" style="margin-top:10px;"></div>
+        </section>
+      </div>
+
+      <div id="modTab" class="tab-content">
+        <section class="card">
+          <h2 class="section-title" style="color:#ffa502; border-color:#ffa502;">🛡️ Moderation Control Panel</h2>
+          <p style="color:#a4b0be; margin-bottom:15px; font-size:0.9rem;">Review record submissions and manage player moderation.</p>
+
+          <h3 style="margin-bottom:10px;">Pending Record Submissions</h3>
+          <div id="modSubmissionsContainer" style="margin-bottom:25px;"></div>
+
+          <h3 style="margin-bottom:10px;">Player Moderation Actions (Kick / Ban)</h3>
+          <div style="background:#1f2430; padding:15px; border-radius:8px;">
+            <label>Target Username:</label>
+            <input type="text" id="modTargetUser" placeholder="@username">
+            <div style="display:flex; gap:10px; margin-top:10px;">
+              <button onclick="modAction('kick')" class="btn-small btn-warn" style="flex:1; padding:8px;">Kick User (Force Logout)</button>
+              <button onclick="modAction('ban')" class="btn-small btn-danger" style="flex:1; padding:8px;">Ban User</button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div id="adminTab" class="tab-content">
+        <section class="card">
+          <h2 class="section-title" style="color:#ff4757; border-color:#ff4757;">👑 Administrator Dashboard</h2>
+          <p style="color:#a4b0be; margin-bottom:15px; font-size:0.9rem;">Full community administration controls.</p>
+
+          <div class="admin-grid">
+            <div style="background:#1f2430; padding:15px; border-radius:8px;">
+              <h3 style="color:#00ffff; font-size:1rem; margin-bottom:8px;">Award Demon Record</h3>
+              <label>Target Username:</label>
+              <input type="text" id="adminAwardUser" placeholder="@username">
+              <label>Demon Level:</label>
+              <select id="adminAwardDemon"></select>
+              <button onclick="adminAwardDemon()" class="submit-btn btn-success">Grant Completion & XP</button>
+            </div>
+
+            <div style="background:#1f2430; padding:15px; border-radius:8px;">
+              <h3 style="color:#ffa502; font-size:1rem; margin-bottom:8px;">Remove / Modify Player XP</h3>
+              <label>Target Username:</label>
+              <input type="text" id="adminXPUser" placeholder="@username">
+              <label>XP Amount (negative numbers to subtract):</label>
+              <input type="number" id="adminXPAmount" placeholder="e.g. -1000 or 500">
+              <div style="display:flex; gap:8px; margin-top:10px;">
+                <button onclick="adminModifyXP()" class="btn-small btn-warn" style="flex:1; padding:8px;">Adjust XP</button>
+                <button onclick="adminResetXP()" class="btn-small btn-danger" style="flex:1; padding:8px;">Reset XP to 0</button>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:#1f2430; padding:15px; border-radius:8px; margin-top:15px;">
+            <h3 style="color:#2ed573; font-size:1rem; margin-bottom:8px;">Broadcast System Message</h3>
+            <textarea id="adminBroadcastText" rows="2" placeholder="Message to send to ALL user inboxes..."></textarea>
+            <button onclick="adminBroadcast()" class="submit-btn btn-primary">Send Announcement</button>
+          </div>
+
+          <h3 style="margin-top:25px; margin-bottom:10px;">User Accounts & Role Management</h3>
+          <p style="font-size:0.8rem; color:#ffa502; margin-bottom:10px;">
+            ℹ️ Note: Only <strong>@pandy</strong> can assign roles or ban staff members.
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Role</th>
+                <th>XP</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminUserTable"></tbody>
+          </table>
+        </section>
+      </div>
+
+    </main>
+
+    <aside class="sidebar">
+      <div class="sidebar-title">Our Team</div>
+      <div id="sidebarStaffList"></div>
+    </aside>
+  </div>
 
   <div class="modal-overlay" id="loginModal">
     <div class="modal-content">
@@ -713,22 +962,22 @@
   </div>
 
   <script>
-    const STORAGE_KEY = 'gd_demon_users_v4';
-    const DEMONS_KEY = 'gd_demon_list_v4';
-    const PROPOSALS_KEY = 'gd_level_proposals_v4';
+    const STORAGE_KEY = 'gd_demon_users_v6';
+    const DEMONS_KEY = 'gd_demon_list_v6';
+    const PROPOSALS_KEY = 'gd_level_proposals_v6';
+    const SOCIAL_KEY = 'gd_social_posts_v6';
 
-    /* INITIAL DEMON LIST DATA */
     const defaultDemonData = [
-      { rank: 1, name: "society", img: "society.png", link: "https://www.youtube.com/watch?v=3CoEaH1CM7o", desc: "the new hardest geometry dash level", victors: [] },
-      { rank: 2, name: "thinking space 2", img: "ts2.png", link: "https://www.youtube.com/watch?v=CELNmHwln_c", desc: "the hardest level in geometry dash for 278 days", victors: [] },
-      { rank: 3, name: "flamewall", img: "flamewall.png", link: "https://www.youtube.com/watch?v=gwNYGFmo_WY", desc: "one of the longest top 100 geometry dash levels", victors: [] },
-      { rank: 4, name: "amethyst", img: "amethyst.png", link: "https://www.youtube.com/watch?v=KfShSCp8vM4", desc: "often thought of to be harder than thinking space 2", victors: [] },
-      { rank: 5, name: "tidal wave", img: "tw.png", link: "https://www.youtube.com/watch?v=frjtBcNI6dI", desc: "has 200 frame perfects", victors: [] },
-      { rank: 6, name: "green bullet", img: "gb.png", link: "https://www.youtube.com/watch?v=zfTqKYeqhTo", desc: "nicknam09 took 105,000+ attempts to beat", victors: [] },
-      { rank: 7, name: "orbit", img: "orbit.png", link: "https://www.youtube.com/watch?v=HWg8dtItGCA", desc: "known for every jump being an orb", victors: [] },
-      { rank: 8, name: "nullscapes", img: "ns.png", link: "https://www.youtube.com/watch?v=C-KDhWkXlvI", desc: "known for its robot", victors: [] },
-      { rank: 9, name: "Quanteuse processing", img: "qp.png", link: "https://www.youtube.com/watch?v=sRUO72zI2GQ", desc: "known for its trolls", victors: [] },
-      { rank: 10, name: "boobawamba", img: "bw.png", link: "https://www.youtube.com/watch?v=TAPij318cjE", desc: "classic extreme demon", victors: [] }
+      { rank: 1, name: "society", img: "society.png", link: "https://www.youtube.com/watch?v=3CoEaH1CM7o", desc: "the new hardest geometry dash level", victors: [], isFeatured: true },
+      { rank: 2, name: "thinking space 2", img: "ts2.png", link: "https://www.youtube.com/watch?v=CELNmHwln_c", desc: "the hardest level in geometry dash for 278 days", victors: [], isFeatured: false },
+      { rank: 3, name: "flamewall", img: "flamewall.png", link: "https://www.youtube.com/watch?v=gwNYGFmo_WY", desc: "one of the longest top 100 geometry dash levels", victors: [], isFeatured: false },
+      { rank: 4, name: "amethyst", img: "amethyst.png", link: "https://www.youtube.com/watch?v=KfShSCp8vM4", desc: "often thought of to be harder than thinking space 2", victors: [], isFeatured: false },
+      { rank: 5, name: "tidal wave", img: "tw.png", link: "https://www.youtube.com/watch?v=frjtBcNI6dI", desc: "has 200 frame perfects", victors: [], isFeatured: true },
+      { rank: 6, name: "green bullet", img: "gb.png", link: "https://www.youtube.com/watch?v=zfTqKYeqhTo", desc: "nicknam09 took 105,000+ attempts to beat", victors: [], isFeatured: false },
+      { rank: 7, name: "orbit", img: "orbit.png", link: "https://www.youtube.com/watch?v=HWg8dtItGCA", desc: "known for every jump being an orb", victors: [], isFeatured: false },
+      { rank: 8, name: "nullscapes", img: "ns.png", link: "https://www.youtube.com/watch?v=C-KDhWkXlvI", desc: "known for its robot", victors: [], isFeatured: false },
+      { rank: 9, name: "Quanteuse processing", img: "qp.png", link: "https://www.youtube.com/watch?v=sRUO72zI2GQ", desc: "known for its trolls", victors: [], isFeatured: false },
+      { rank: 10, name: "boobawamba", img: "bw.png", link: "https://www.youtube.com/watch?v=TAPij318cjE", desc: "classic extreme demon", victors: [], isFeatured: false }
     ];
 
     function getDemonList() {
@@ -752,32 +1001,39 @@
       localStorage.setItem(PROPOSALS_KEY, JSON.stringify(props));
     }
 
-    // XP FORMULA: Rank 1 = 10,000 XP; -5 XP per rank lower
+    function getSocialPosts() {
+      return JSON.parse(localStorage.getItem(SOCIAL_KEY) || '[]');
+    }
+
+    function saveSocialPosts(posts) {
+      localStorage.setItem(SOCIAL_KEY, JSON.stringify(posts));
+    }
+
     function calculateDemonXP(rank) {
       return Math.max(100, 10000 - ((rank - 1) * 5));
     }
 
-    /* DATABASE INITIALIZATION */
     function getDBUsers() {
       let users = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-      
-      // ENSURE @pandy IS ALWAYS PRESENT & ALWAYS BOSS RANK
       if (!users['@pandy']) {
         users['@pandy'] = {
           username: '@pandy',
           password: 'password123',
-          xp: 100000,
+          xp: 0,
           levelsBeat: [],
           clan: '[BOSS]',
           inbox: [],
           role: 'boss',
+          following: [],
+          friends: [],
+          featureRequestsToday: 0,
+          lastFeatureDate: '',
           isBanned: false,
           isKicked: false
         };
       } else {
-        users['@pandy'].role = 'boss'; // Hard enforce boss rank for pandy
+        users['@pandy'].role = 'boss';
       }
-
       saveDBUsers(users);
       return users;
     }
@@ -795,6 +1051,10 @@
       renderClans();
       updateAuthUI();
       renderInbox();
+      renderSocialFeed();
+      renderFeaturedFeed();
+      renderFriendsAndMessages();
+      renderSidebarStaff();
     });
 
     function checkKickOrBanStatus() {
@@ -810,7 +1070,7 @@
         }
         if (me.isKicked) {
           alert('⚠️ You have been kicked by a moderator. Please log back in.');
-          me.isKicked = false; // reset kicked flag on database
+          me.isKicked = false;
           saveDBUsers(users);
           logout();
           return;
@@ -818,7 +1078,6 @@
       }
     }
 
-    /* UI NAVIGATION */
     function switchTab(tabName, btnEl) {
       checkKickOrBanStatus();
       document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
@@ -829,16 +1088,20 @@
 
       if (tabName === 'leaderboards') renderLeaderboards();
       if (tabName === 'clans') renderClans();
+      if (tabName === 'social') renderSocialFeed();
+      if (tabName === 'featured') renderFeaturedFeed();
+      if (tabName === 'messages') renderFriendsAndMessages();
       if (tabName === 'inbox') renderInbox();
       if (tabName === 'admin') renderAdminDashboard();
       if (tabName === 'mod') renderModPanel();
       if (tabName === 'lmod') renderLmodPanel();
+      if (tabName === 'smod') renderSmodPanel();
+      if (tabName === 'fpicker') renderFpickerPanel();
     }
 
     function openModal(id) { document.getElementById(id).style.display = 'flex'; }
     function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
-    /* AUTHENTICATION & PERMISSIONS */
     function updateAuthUI() {
       const users = getDBUsers();
       const userDisplay = document.getElementById('userDisplay');
@@ -847,6 +1110,8 @@
       const adminTabBtn = document.getElementById('adminTabBtn');
       const modTabBtn = document.getElementById('modTabBtn');
       const lmodTabBtn = document.getElementById('lmodTabBtn');
+      const smodTabBtn = document.getElementById('smodTabBtn');
+      const fpickerTabBtn = document.getElementById('fpickerTabBtn');
 
       if (currentUser && users[currentUser]) {
         const u = users[currentUser];
@@ -859,6 +1124,8 @@
         else if (role === 'admin') roleClass = 'role-admin';
         else if (role === 'leaderboard mod') roleClass = 'role-leaderboard-mod';
         else if (role === 'mod') roleClass = 'role-mod';
+        else if (role === 'social mod') roleClass = 'role-social-mod';
+        else if (role === 'featured picker') roleClass = 'role-featured-picker';
 
         userDisplay.innerHTML = `
           <strong>${u.username}</strong>
@@ -868,14 +1135,17 @@
         `;
         authBtns.innerHTML = `<button class="logout" onclick="logout()">Logout</button>`;
 
-        // TAB PERMISSIONS BY ROLE
         const canAdmin = ['boss', 'dev', 'super admin', 'admin'].includes(role);
         const canMod = ['boss', 'dev', 'super admin', 'admin', 'mod'].includes(role);
         const canLmod = ['boss', 'dev', 'super admin', 'leaderboard mod'].includes(role);
+        const canSmod = ['boss', 'dev', 'super admin', 'admin', 'social mod'].includes(role);
+        const canFpicker = ['boss', 'dev', 'super admin', 'admin', 'featured picker'].includes(role);
 
         adminTabBtn.style.display = canAdmin ? 'inline-block' : 'none';
         modTabBtn.style.display = canMod ? 'inline-block' : 'none';
         lmodTabBtn.style.display = canLmod ? 'inline-block' : 'none';
+        smodTabBtn.style.display = canSmod ? 'inline-block' : 'none';
+        fpickerTabBtn.style.display = canFpicker ? 'inline-block' : 'none';
 
         const badge = document.getElementById('inboxBadge');
         const unreadCount = u.inbox ? u.inbox.filter(m => !m.read).length : 0;
@@ -891,7 +1161,53 @@
         adminTabBtn.style.display = 'none';
         modTabBtn.style.display = 'none';
         lmodTabBtn.style.display = 'none';
+        smodTabBtn.style.display = 'none';
+        fpickerTabBtn.style.display = 'none';
       }
+
+      renderSidebarStaff();
+    }
+
+    function renderSidebarStaff() {
+      const users = getDBUsers();
+      const sidebarContainer = document.getElementById('sidebarStaffList');
+
+      const staffRoles = ['boss', 'dev', 'super admin', 'admin', 'leaderboard mod', 'mod', 'social mod', 'featured picker'];
+      const staffMembers = Object.values(users).filter(u => staffRoles.includes(u.role));
+
+      const roleOrder = { 'boss': 1, 'dev': 2, 'super admin': 3, 'admin': 4, 'leaderboard mod': 5, 'mod': 6, 'social mod': 7, 'featured picker': 8 };
+      staffMembers.sort((a, b) => (roleOrder[a.role] || 99) - (roleOrder[b.role] || 99));
+
+      if (staffMembers.length === 0) {
+        sidebarContainer.innerHTML = `<p style="color:#a4b0be; font-size:0.8rem;">No staff online.</p>`;
+        return;
+      }
+
+      sidebarContainer.innerHTML = staffMembers.map(staff => {
+        let roleClass = 'role-user';
+        if (staff.role === 'boss') roleClass = 'role-boss';
+        else if (staff.role === 'dev') roleClass = 'role-dev';
+        else if (staff.role === 'super admin') roleClass = 'role-super-admin';
+        else if (staff.role === 'admin') roleClass = 'role-admin';
+        else if (staff.role === 'leaderboard mod') roleClass = 'role-leaderboard-mod';
+        else if (staff.role === 'mod') roleClass = 'role-mod';
+        else if (staff.role === 'social mod') roleClass = 'role-social-mod';
+        else if (staff.role === 'featured picker') roleClass = 'role-featured-picker';
+
+        const demonsBeatCount = staff.levelsBeat ? staff.levelsBeat.length : 0;
+
+        return `
+          <div class="staff-card">
+            <div class="staff-name">
+              <span>${staff.username}</span>
+              <span class="role-badge ${roleClass}">${staff.role}</span>
+            </div>
+            <div class="staff-stats">
+              XP: <strong>${staff.xp}</strong> | Demons Beat: <strong>${demonsBeatCount}</strong>
+            </div>
+          </div>
+        `;
+      }).join('');
     }
 
     function handleRegister(e) {
@@ -901,7 +1217,6 @@
       const pass = document.getElementById('regPassword').value;
 
       const users = getDBUsers();
-      
       if (users[user] && users[user].password !== "") {
         alert('Username already taken!');
         return;
@@ -915,6 +1230,10 @@
         clan: "",
         inbox: [],
         role: user === '@pandy' ? 'boss' : 'user',
+        following: [],
+        friends: [],
+        featureRequestsToday: 0,
+        lastFeatureDate: '',
         isBanned: false,
         isKicked: false
       };
@@ -960,7 +1279,475 @@
       switchTab('list');
     }
 
-    /* SUBMISSIONS (RECORD & CUSTOM LEVEL) */
+    /* SOCIAL FEED LOGIC & INTERACTIONS */
+    function handleSocialPost(e) {
+      e.preventDefault();
+      checkKickOrBanStatus();
+      if (!currentUser) return alert('Please log in to post on the social feed!');
+
+      const text = document.getElementById('socialText').value.trim();
+      const fileInput = document.getElementById('socialFile');
+      
+      if (!text && fileInput.files.length === 0) {
+        return alert('Please write a message or attach a file.');
+      }
+
+      const processPostWithMedia = (mediaDataUrl, mediaType) => {
+        const posts = getSocialPosts();
+        posts.unshift({
+          id: Date.now(),
+          author: currentUser,
+          text: text,
+          mediaUrl: mediaDataUrl,
+          mediaType: mediaType,
+          date: new Date().toLocaleTimeString(),
+          likes: [],
+          comments: [],
+          isFeatured: false
+        });
+        saveSocialPosts(posts);
+        renderSocialFeed();
+        renderFeaturedFeed();
+        e.target.reset();
+        alert('Posted to the social feed successfully!');
+      };
+
+      if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          let type = 'file';
+          if (file.type.startsWith('image/')) type = 'image';
+          else if (file.type.startsWith('video/')) type = 'video';
+          else if (file.type.startsWith('audio/')) type = 'audio';
+
+          processPostWithMedia(event.target.result, type);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        processPostWithMedia(null, null);
+      }
+    }
+
+    function toggleFollow(authorUsername) {
+      if (!currentUser) return alert('Please log in to follow users!');
+      if (currentUser === authorUsername) return alert('You cannot follow yourself.');
+
+      const users = getDBUsers();
+      const me = users[currentUser];
+      if (!me.following) me.following = [];
+
+      const idx = me.following.indexOf(authorUsername);
+      if (idx > -1) {
+        me.following.splice(idx, 1);
+        alert(`Unfollowed ${authorUsername}`);
+      } else {
+        me.following.push(authorUsername);
+        alert(`Now following ${authorUsername}!`);
+      }
+      saveDBUsers(users);
+      renderSocialFeed();
+    }
+
+    function toggleLike(postId) {
+      if (!currentUser) return alert('Please log in to like posts!');
+      const posts = getSocialPosts();
+      const post = posts.find(p => p.id === postId);
+      if (!post) return;
+
+      if (!post.likes) post.likes = [];
+      const idx = post.likes.indexOf(currentUser);
+      if (idx > -1) {
+        post.likes.splice(idx, 1);
+      } else {
+        post.likes.push(currentUser);
+      }
+
+      saveSocialPosts(posts);
+      renderSocialFeed();
+      renderFeaturedFeed();
+    }
+
+    function addComment(postId, event) {
+      event.preventDefault();
+      if (!currentUser) return alert('Please log in to comment!');
+      const inputEl = document.getElementById(`commentInput_${postId}`);
+      const text = inputEl.value.trim();
+      if (!text) return;
+
+      const posts = getSocialPosts();
+      const post = posts.find(p => p.id === postId);
+      if (!post) return;
+
+      if (!post.comments) post.comments = [];
+      post.comments.push({
+        author: currentUser,
+        text: text,
+        date: new Date().toLocaleTimeString()
+      });
+
+      saveSocialPosts(posts);
+      renderSocialFeed();
+      renderFeaturedFeed();
+    }
+
+    function requestFeaturePost(postId) {
+      if (!currentUser) return alert('Please log in to request features!');
+      const users = getDBUsers();
+      const me = users[currentUser];
+
+      const today = new Date().toDateString();
+      if (me.lastFeatureDate !== today) {
+        me.lastFeatureDate = today;
+        me.featureRequestsToday = 0;
+      }
+
+      if (me.featureRequestsToday >= 5) {
+        return alert('⚠️ You have reached your daily limit of 5 feature requests! Try again tomorrow.');
+      }
+
+      me.featureRequestsToday++;
+      saveDBUsers(users);
+
+      const posts = getSocialPosts();
+      const post = posts.find(p => p.id === postId);
+
+      Object.values(users).forEach(staff => {
+        if (['boss', 'dev', 'super admin', 'admin', 'featured picker'].includes(staff.role)) {
+          if (!staff.featureRequestsQueue) staff.featureRequestsQueue = [];
+          staff.featureRequestsQueue.unshift({
+            postId: postId,
+            requestedBy: currentUser,
+            postText: post && post.text ? post.text.substring(0, 40) + '...' : 'Media Post',
+            date: new Date().toLocaleTimeString()
+          });
+        }
+      });
+      saveDBUsers(users);
+
+      alert(`Feature request submitted successfully! (${me.featureRequestsToday}/5 requests used today).`);
+    }
+
+    function renderSocialFeed() {
+      const container = document.getElementById('socialFeedContainer');
+      const posts = getSocialPosts();
+      const users = getDBUsers();
+      const me = currentUser ? users[currentUser] : null;
+
+      if (posts.length === 0) {
+        container.innerHTML = `<p style="color:#a4b0be; font-style:italic;">No social posts yet. Be the first to share something!</p>`;
+        return;
+      }
+
+      container.innerHTML = posts.map((post) => {
+        let mediaHtml = '';
+        if (post.mediaUrl) {
+          if (post.mediaType === 'image') {
+            mediaHtml = `<div class="social-media-container"><img src="${post.mediaUrl}" alt="Post image"></div>`;
+          } else if (post.mediaType === 'video') {
+            mediaHtml = `<div class="social-media-container"><video src="${post.mediaUrl}" controls></video></div>`;
+          } else if (post.mediaType === 'audio') {
+            mediaHtml = `<div class="social-media-container"><audio src="${post.mediaUrl}" controls></audio></div>`;
+          } else {
+            mediaHtml = `<div class="social-media-container"><a href="${post.mediaUrl}" target="_blank" style="color:#70a1ff;">Download Attached File</a></div>`;
+          }
+        }
+
+        const isLiked = currentUser && post.likes && post.likes.includes(currentUser);
+        const likeCount = post.likes ? post.likes.length : 0;
+        const isFollowing = currentUser && me && me.following && me.following.includes(post.author);
+        const featuredRibbon = post.isFeatured ? `<div class="featured-ribbon">⭐ Featured</div>` : '';
+
+        const commentsHtml = post.comments && post.comments.length > 0 ? `
+          <div class="comment-section">
+            ${post.comments.map(c => `<div class="comment-item"><strong>${c.author}:</strong> ${c.text}</div>`).join('')}
+          </div>
+        ` : '';
+
+        return `
+          <div class="social-post">
+            ${featuredRibbon}
+            <div class="social-header">
+              <div class="social-author-area">
+                <span class="social-author">${post.author}</span>
+                ${currentUser && currentUser !== post.author ? `
+                  <button onclick="toggleFollow('${post.author}')" class="btn-small btn-primary" style="padding:2px 6px; font-size:0.7rem;">
+                    ${isFollowing ? 'Unfollow' : 'Follow'}
+                  </button>
+                ` : ''}
+              </div>
+              <span class="social-time">${post.date}</span>
+            </div>
+            ${post.text ? `<p style="white-space: pre-line; font-size:0.95rem; margin-bottom:8px;">${post.text}</p>` : ''}
+            ${mediaHtml}
+
+            <div class="social-actions">
+              <button onclick="toggleLike(${post.id})" class="action-btn ${isLiked ? 'liked' : ''}">
+                ❤️ ${likeCount} Like${likeCount === 1 ? '' : 's'}
+              </button>
+              <button onclick="requestFeaturePost(${post.id})" class="action-btn" style="color:#f1c40f;">
+                ⭐ Request Feature
+              </button>
+            </div>
+
+            ${commentsHtml}
+
+            <form onsubmit="addComment(${post.id}, event)" style="margin-top:8px; display:flex; gap:6px;">
+              <input type="text" id="commentInput_${post.id}" placeholder="Write a comment..." style="padding:6px; font-size:0.8rem;">
+              <button type="submit" class="btn-small btn-success" style="padding:6px 12px; margin-top:0;">Reply</button>
+            </form>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderFeaturedFeed() {
+      const socialContainer = document.getElementById('featuredSocialContainer');
+      const levelsContainer = document.getElementById('featuredLevelsContainer');
+      const posts = getSocialPosts();
+      const featuredPosts = posts.filter(p => p.isFeatured);
+
+      if (featuredPosts.length === 0) {
+        socialContainer.innerHTML = `<p style="color:#a4b0be; font-size:0.85rem; font-style:italic;">No featured social posts yet.</p>`;
+      } else {
+        socialContainer.innerHTML = featuredPosts.map(post => `
+          <div class="social-post" style="border-left: 4px solid #f1c40f;">
+            <div class="social-header">
+              <span class="social-author">${post.author}</span>
+              <span class="social-time">${post.date}</span>
+            </div>
+            ${post.text ? `<p style="margin-bottom:8px;">${post.text}</p>` : ''}
+          </div>
+        `).join('');
+      }
+
+      const demonList = getDemonList();
+      const featuredLevels = demonList.filter(d => d.isFeatured);
+
+      if (featuredLevels.length === 0) {
+        levelsContainer.innerHTML = `<p style="color:#a4b0be; font-size:0.85rem; font-style:italic;">No featured levels currently.</p>`;
+      } else {
+        levelsContainer.innerHTML = featuredLevels.map(demon => `
+          <div class="list-item" style="border-left: 4px solid #f1c40f;">
+            <div class="rank">#${demon.rank}</div>
+            <a href="${demon.link}" target="_blank">
+              <img src="${demon.img}" class="level-img" alt="${demon.name}">
+            </a>
+            <div class="level-info">
+              <div class="level-title">${demon.name} ⭐</div>
+              <p class="level-desc">${demon.desc}</p>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    /* FRIENDS & MESSAGING */
+    function addFriend() {
+      if (!currentUser) return alert('Please log in!');
+      let friendUser = document.getElementById('friendInput').value.trim();
+      if (!friendUser.startsWith('@')) friendUser = '@' + friendUser;
+
+      const users = getDBUsers();
+      if (!users[friendUser]) return alert('User not found!');
+      if (friendUser === currentUser) return alert('You cannot add yourself.');
+
+      const me = users[currentUser];
+      if (!me.friends) me.friends = [];
+      if (me.friends.includes(friendUser)) return alert('Already on your friends list!');
+
+      me.friends.push(friendUser);
+      saveDBUsers(users);
+      document.getElementById('friendInput').value = '';
+      renderFriendsAndMessages();
+      alert(`Added ${friendUser} to your friends list!`);
+    }
+
+    function renderFriendsAndMessages() {
+      const container = document.getElementById('friendsListContainer');
+      if (!currentUser) {
+        container.innerHTML = `<p style="color:#a4b0be;">Log in to see friends.</p>`;
+        return;
+      }
+      const users = getDBUsers();
+      const me = users[currentUser];
+
+      if (!me.friends || me.friends.length === 0) {
+        container.innerHTML = `<p style="color:#a4b0be; font-style:italic;">No friends added yet.</p>`;
+        return;
+      }
+
+      container.innerHTML = me.friends.map(f => `
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 0; border-bottom:1px solid #2a2f3d;">
+          <span>${f}</span>
+          <button onclick="removeFriend('${f}')" class="btn-small btn-danger" style="padding:2px 6px;">Remove</button>
+        </div>
+      `).join('');
+    }
+
+    function removeFriend(friendUser) {
+      const users = getDBUsers();
+      const me = users[currentUser];
+      me.friends = me.friends.filter(f => f !== friendUser);
+      saveDBUsers(users);
+      renderFriendsAndMessages();
+    }
+
+    function sendPrivateMessage() {
+      if (!currentUser) return alert('Please log in!');
+      let recipient = document.getElementById('pmRecipient').value.trim();
+      if (!recipient.startsWith('@')) recipient = '@' + recipient;
+      const text = document.getElementById('pmText').value.trim();
+
+      if (!text) return alert('Please type a message.');
+      const users = getDBUsers();
+      if (!users[recipient]) return alert('Recipient user not found!');
+
+      users[recipient].inbox.unshift({
+        from: `💬 PM from ${currentUser}`,
+        message: text,
+        date: new Date().toLocaleTimeString()
+      });
+
+      saveDBUsers(users);
+      document.getElementById('pmRecipient').value = '';
+      document.getElementById('pmText').value = '';
+      alert('Private message sent successfully to recipient inbox!');
+    }
+
+    /* FEATURED PICKER PANEL */
+    function renderFpickerPanel() {
+      const queueContainer = document.getElementById('featureRequestsQueueContainer');
+      const socialPostsContainer = document.getElementById('fpickerSocialContainer');
+      const users = getDBUsers();
+      const me = users[currentUser];
+
+      if (!me || !me.featureRequestsQueue || me.featureRequestsQueue.length === 0) {
+        queueContainer.innerHTML = `<p style="color:#a4b0be;">No feature requests from viewers right now.</p>`;
+      } else {
+        queueContainer.innerHTML = me.featureRequestsQueue.map((req, idx) => `
+          <div style="background:#1f2430; padding:10px; border-radius:6px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <strong>${req.requestedBy}</strong> requested post ID <code>${req.postId}</code> ("${req.postText}")
+              <div style="font-size:0.75rem; color:#a4b0be;">${req.date}</div>
+            </div>
+            <div>
+              <button onclick="featurePostFromQueue(${req.postId}, ${idx})" class="btn-small btn-success">Feature Post</button>
+              <button onclick="dismissFeatureRequest(${idx})" class="btn-small btn-danger">Dismiss</button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      const posts = getSocialPosts();
+      if (posts.length === 0) {
+        socialPostsContainer.innerHTML = `<p style="color:#a4b0be;">No social posts available.</p>`;
+        return;
+      }
+
+      socialPostsContainer.innerHTML = posts.map(post => `
+        <div class="social-post">
+          <div class="social-header">
+            <span class="social-author">${post.author}</span>
+            <span class="social-time">${post.date}</span>
+          </div>
+          ${post.text ? `<p style="margin-bottom:8px;">${post.text}</p>` : ''}
+          <button onclick="toggleFeaturePostStatus(${post.id})" class="btn-small ${post.isFeatured ? 'btn-danger' : 'btn-feature'}">
+            ${post.isFeatured ? 'Unfeature Post' : '⭐ Feature Post'}
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function featurePostFromQueue(postId, queueIdx) {
+      const posts = getSocialPosts();
+      const post = posts.find(p => p.id === postId);
+      if (post) {
+        post.isFeatured = true;
+        saveSocialPosts(posts);
+      }
+
+      const users = getDBUsers();
+      const me = users[currentUser];
+      if (me && me.featureRequestsQueue) {
+        me.featureRequestsQueue.splice(queueIdx, 1);
+        saveDBUsers(users);
+      }
+
+      renderFpickerPanel();
+      renderFeaturedFeed();
+      alert('Post successfully featured!');
+    }
+
+    function dismissFeatureRequest(queueIdx) {
+      const users = getDBUsers();
+      const me = users[currentUser];
+      if (me && me.featureRequestsQueue) {
+        me.featureRequestsQueue.splice(queueIdx, 1);
+        saveDBUsers(users);
+      }
+      renderFpickerPanel();
+    }
+
+    function toggleFeaturePostStatus(postId) {
+      const posts = getSocialPosts();
+      const post = posts.find(p => p.id === postId);
+      if (post) {
+        post.isFeatured = !post.isFeatured;
+        saveSocialPosts(posts);
+        renderFpickerPanel();
+        renderFeaturedFeed();
+        renderSocialFeed();
+      }
+    }
+
+    /* SOCIAL MOD PANEL */
+    function renderSmodPanel() {
+      const container = document.getElementById('smodFeedContainer');
+      const posts = getSocialPosts();
+
+      if (posts.length === 0) {
+        container.innerHTML = `<p style="color:#a4b0be;">No social posts available to moderate.</p>`;
+        return;
+      }
+
+      container.innerHTML = posts.map((post) => {
+        return `
+          <div class="social-post" style="border-left: 4px solid #e056fd;">
+            <div class="social-header">
+              <span class="social-author">${post.author}</span>
+              <span class="social-time">${post.date}</span>
+            </div>
+            ${post.text ? `<p style="margin-bottom:8px;">${post.text}</p>` : ''}
+            <button onclick="deleteSocialPost(${post.id}, '${post.author}')" class="btn-small btn-danger">Delete & Warn Author</button>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function deleteSocialPost(postId, authorUsername) {
+      let posts = getSocialPosts();
+      posts = posts.filter(p => p.id !== postId);
+      saveSocialPosts(posts);
+
+      renderSocialFeed();
+      renderFeaturedFeed();
+      renderSmodPanel();
+
+      alert('please post content that all ages can view, we want a happy community full of joy and whimsy not a edgy community, if you can than please do not post inappropriate content');
+
+      const users = getDBUsers();
+      if (users[authorUsername]) {
+        users[authorUsername].inbox.unshift({
+          from: "🎨 Social Moderation",
+          message: "⚠️ Your recent social post was removed. Reminder: please post content that all ages can view, we want a happy community full of joy and whimsy not an edgy community, if you can then please do not post inappropriate content.",
+          date: new Date().toLocaleTimeString()
+        });
+        saveDBUsers(users);
+      }
+    }
+
+    /* RECORD & CUSTOM LEVEL SUBMISSIONS */
     function handleSubmission(e) {
       e.preventDefault();
       checkKickOrBanStatus();
@@ -972,7 +1759,6 @@
       const notes = document.getElementById('submitNotes').value || "None";
 
       const users = getDBUsers();
-
       const subObj = {
         id: Date.now(),
         from: currentUser,
@@ -983,7 +1769,6 @@
         date: new Date().toLocaleTimeString()
       };
 
-      // Notify Staff
       Object.values(users).forEach(u => {
         if (['boss','dev','super admin','admin','mod'].includes(u.role)) {
           if (!u.pendingSubs) u.pendingSubs = [];
@@ -1049,7 +1834,6 @@
       `).join('');
     }
 
-    /* LEADERBOARD MOD PANEL LOGIC */
     function renderLmodPanel() {
       const container = document.getElementById('lmodLevelQueueContainer');
       const proposals = getProposals();
@@ -1068,7 +1852,6 @@
           <p style="font-size:0.85rem; margin-top:4px;">
             Showcase Video: <a href="${prop.video}" target="_blank" style="color:#70a1ff;">Watch Video</a>
           </p>
-
           <div style="margin-top:10px; display:flex; gap:10px; align-items:center;">
             <label style="margin:0;">Place at Rank #:</label>
             <input type="number" id="placeRank_${idx}" min="1" max="${demonList.length + 1}" value="1" style="width:70px; padding:4px;">
@@ -1083,20 +1866,18 @@
       const proposals = getProposals();
       const prop = proposals[idx];
       const targetRank = parseInt(document.getElementById(`placeRank_${idx}`).value) || 1;
-
       const demonList = getDemonList();
 
-      // Insert level into Demon List at specified rank
       const newLevel = {
         rank: targetRank,
         name: prop.name,
         img: prop.img,
         link: prop.video,
         desc: prop.desc,
-        victors: []
+        victors: [],
+        isFeatured: false
       };
 
-      // Shift other ranks
       demonList.forEach(d => {
         if (d.rank >= targetRank) d.rank += 1;
       });
@@ -1105,11 +1886,9 @@
       demonList.sort((a, b) => a.rank - b.rank);
       saveDemonList(demonList);
 
-      // Remove from proposal queue
       proposals.splice(idx, 1);
       saveProposals(proposals);
 
-      // Notify Creator
       const users = getDBUsers();
       if (users[prop.creator]) {
         users[prop.creator].inbox.unshift({
@@ -1130,12 +1909,10 @@
       const prop = proposals[idx];
       proposals.splice(idx, 1);
       saveProposals(proposals);
-
       renderLmodPanel();
       alert(`Proposal for "${prop.name}" rejected.`);
     }
 
-    /* MOD PANEL LOGIC */
     function renderModPanel() {
       const container = document.getElementById('modSubmissionsContainer');
       const users = getDBUsers();
@@ -1174,7 +1951,6 @@
 
       if (target && demonObj) {
         const xpEarned = calculateDemonXP(demonObj.rank);
-        
         if (!target.levelsBeat.includes(demonObj.name)) {
           target.levelsBeat.push(demonObj.name);
           target.xp += xpEarned;
@@ -1198,6 +1974,7 @@
 
       saveDBUsers(users);
       renderModPanel();
+      updateAuthUI();
       alert('Submission approved and XP awarded!');
     }
 
@@ -1227,8 +2004,7 @@
 
       if (!target) return alert('User not found!');
 
-      // Staff immunity rules: standard mods/admins cannot kick/ban other staff members. Only @pandy (boss) can!
-      const isTargetStaff = ['boss','dev','super admin','admin','leaderboard mod','mod'].includes(target.role);
+      const isTargetStaff = ['boss','dev','super admin','admin','leaderboard mod','mod','social mod','featured picker'].includes(target.role);
       if (isTargetStaff && me.role !== 'boss') {
         return alert('⛔ Only @pandy (Boss) has authority to kick or ban staff members!');
       }
@@ -1236,7 +2012,7 @@
       if (type === 'kick') {
         target.isKicked = true;
         saveDBUsers(users);
-        alert(`Successfully kicked ${targetUser}. They will be logged out on their next action.`);
+        alert(`Successfully kicked ${targetUser}.`);
       } else if (type === 'ban') {
         target.isBanned = true;
         saveDBUsers(users);
@@ -1246,11 +2022,9 @@
       document.getElementById('modTargetUser').value = '';
     }
 
-    /* ADMIN PANEL DASHBOARD */
     function renderAdminDashboard() {
       const users = getDBUsers();
       const tbody = document.getElementById('adminUserTable');
-
       const isBoss = currentUser === '@pandy';
 
       tbody.innerHTML = Object.values(users).map(u => `
@@ -1265,6 +2039,8 @@
                 <option value="">Change Role...</option>
                 <option value="user">User</option>
                 <option value="mod">Mod</option>
+                <option value="social mod">Social Mod</option>
+                <option value="featured picker">Featured Picker</option>
                 <option value="leaderboard mod">Leaderboard Mod</option>
                 <option value="admin">Admin</option>
                 <option value="super admin">Super Admin</option>
@@ -1309,6 +2085,7 @@
         user.levelsBeat.push(demon.name);
         user.xp += xpEarned;
         saveDBUsers(users);
+        updateAuthUI();
         alert(`Granted ${demon.name} to ${user.username}! Awarded +${xpEarned} XP.`);
       } else {
         alert('User already beat this demon.');
@@ -1333,7 +2110,6 @@
 
     function adminResetXP() {
       const username = document.getElementById('adminXPUser').value.trim();
-
       const users = getDBUsers();
       const user = users[username.startsWith('@') ? username : '@' + username];
 
@@ -1372,10 +2148,10 @@
         delete users[username];
         saveDBUsers(users);
         renderAdminDashboard();
+        updateAuthUI();
       }
     }
 
-    /* LEADERBOARDS & CLANS */
     function renderLeaderboards() {
       const users = getDBUsers();
       const userList = Object.values(users).sort((a, b) => b.xp - a.xp);
@@ -1438,7 +2214,6 @@
       `).join('');
     }
 
-    /* DEMON LIST RENDERING */
     function renderDemonList() {
       const container = document.getElementById('demon-list');
       const submitDropdown = document.getElementById('submitDemon');
@@ -1461,7 +2236,7 @@
             <img src="${demon.img}" class="level-img" alt="${demon.name}">
           </a>
           <div class="level-info" onclick="openVictorsModal(${index})">
-            <div class="level-title">${demon.name}</div>
+            <div class="level-title">${demon.name} ${demon.isFeatured ? '⭐' : ''}</div>
             <p class="level-desc">${demon.desc}</p>
             <div class="xp-reward-badge">+${xpAmount} XP Reward</div>
           </div>

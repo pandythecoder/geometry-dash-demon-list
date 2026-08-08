@@ -781,14 +781,14 @@
         return;
       }
 
-      const existingInbox = users[user] ? users[user].inbox : [{ from: "System", message: "Welcome to the Demon List! Complete levels to earn XP.", read: false }];
+      const existingInbox = users[user] ? users[user].inbox : [];
 
       users[user] = {
         username: user,
         password: pass,
         xp: 100,
         levelsBeat: [],
-        clan: user.toLowerCase() === "@pandy" ? "[ADMIN]" : "",
+        clan: "",
         inbox: existingInbox
       };
 
@@ -842,7 +842,7 @@
         from: submitter,
         message: `New record submission for ${demon} (${progress}%)!\nVideo: ${video}\nNotes: ${notes}`,
         date: new Date().toLocaleTimeString(),
-        read: false // New unread message flag
+        read: false
       };
 
       if (!users["@pandy"]) {
@@ -851,7 +851,7 @@
           password: "",
           xp: 0,
           levelsBeat: [],
-          clan: "[ADMIN]",
+          clan: "",
           inbox: []
         };
       }
@@ -912,7 +912,7 @@
 
       const tbody = document.getElementById('leaderboardBody');
       if (userList.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="5" style="color:#a4b0be; text-align:center;">No real registered players yet. Be the first to register!</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="5" style="color:#a4b0be; text-align:center;">No players registered yet. Be the first to register!</td></tr>`;
         return;
       }
 
@@ -974,7 +974,7 @@
 
       const tbody = document.getElementById('clanBody');
       if (clanList.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="3" style="color:#a4b0be; text-align:center;">No real clans formed yet. Reach 1000 XP to create one!</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="3" style="color:#a4b0be; text-align:center;">No clans formed yet. Reach 1000 XP to create one!</td></tr>`;
         return;
       }
 

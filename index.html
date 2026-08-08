@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Geometry Dash Demon List</title>
   <style>
-    /* RESET & CORE STYLES */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -63,7 +62,6 @@
       padding-bottom: 8px;
     }
 
-    /* DEMON LIST STYLES */
     .list-item {
       display: flex;
       gap: 15px;
@@ -91,7 +89,8 @@
       height: 65px;
       object-fit: cover;
       border-radius: 6px;
-      background-color: #000;
+      background-color: #2a2f3d;
+      display: block;
     }
 
     .level-info {
@@ -103,6 +102,7 @@
       color: #ffffff;
       text-decoration: none;
       font-weight: bold;
+      text-transform: capitalize;
     }
 
     .level-title:hover {
@@ -115,7 +115,6 @@
       margin-top: 5px;
     }
 
-    /* RULES BOX */
     .rules-box {
       background: #1a1e29;
       border-left: 4px solid #ffa502;
@@ -141,7 +140,6 @@
       margin-bottom: 6px;
     }
 
-    /* FORM STYLES */
     label {
       display: block;
       font-size: 0.85rem;
@@ -196,8 +194,7 @@
     
     <section class="card">
       <h2 class="section-title">Top Levels</h2>
-      <div id="demon-list">
-        </div>
+      <div id="demon-list"></div>
     </section>
 
     <section class="card">
@@ -215,7 +212,6 @@
       </div>
 
       <form action="https://formsubmit.co/oliverwood051@gmail.com" method="POST">
-        
         <input type="hidden" name="_subject" value="New Demon List Record Submission">
         <input type="hidden" name="_captcha" value="false">
 
@@ -223,8 +219,7 @@
         <input type="text" id="username" name="GD Username" placeholder="Enter your in-game name" required>
 
         <label for="demon">Demon Defeated:</label>
-        <select id="demon" name="Level Defeated" required>
-          </select>
+        <select id="demon" name="Level Defeated" required></select>
 
         <label for="progress">Progress Percentage (%):</label>
         <input type="number" id="progress" name="Progress (%)" min="50" max="100" placeholder="50 - 100" required>
@@ -242,9 +237,6 @@
   </main>
 
   <script>
-    /* =========================================================
-       DEMON DATA
-    ========================================================= */
     const demonData = [
       {
         rank: 1,
@@ -318,36 +310,30 @@
       }
     ];
 
-    /* =========================================================
-       DYNAMIC RENDERING LOGIC
-    ========================================================= */
+    document.addEventListener("DOMContentLoaded", () => {
+      demonData.sort((a, b) => a.rank - b.rank);
 
-    // 1. Sort demonData strictly by rank
-    demonData.sort((a, b) => a.rank - b.rank);
+      const demonListContainer = document.getElementById('demon-list');
+      const demonSelectDropdown = document.getElementById('demon');
 
-    const demonListContainer = document.getElementById('demon-list');
-    const demonSelectDropdown = document.getElementById('demon');
+      demonData.forEach(demon => {
+        const item = document.createElement('div');
+        item.className = 'list-item';
+        item.innerHTML = `
+          <div class="rank">#${demon.rank}</div>
+          <img src="${demon.img}" class="level-img" alt="${demon.name}">
+          <div class="level-info">
+            <a href="${demon.link}" target="_blank" class="level-title">${demon.name}</a>
+            <p class="level-desc">${demon.desc}</p>
+          </div>
+        `;
+        demonListContainer.appendChild(item);
 
-    // 2. Render sorted list & fill dropdown
-    demonData.forEach(demon => {
-      // Create list item
-      const item = document.createElement('div');
-      item.className = 'list-item';
-      item.innerHTML = `
-        <div class="rank">#${demon.rank}</div>
-        <img src="${demon.img}" alt="${demon.name}" class="level-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/110x65/1f2430/ffffff?text=No+Image';">
-        <div class="level-info">
-          <a href="${demon.link}" target="_blank" class="level-title">${demon.name}</a>
-          <p class="level-desc">${demon.desc}</p>
-        </div>
-      `;
-      demonListContainer.appendChild(item);
-
-      // Populate Select Dropdown
-      const option = document.createElement('option');
-      option.value = demon.name;
-      option.textContent = `#${demon.rank} - ${demon.name}`;
-      demonSelectDropdown.appendChild(option);
+        const option = document.createElement('option');
+        option.value = demon.name;
+        option.textContent = `#${demon.rank} - ${demon.name}`;
+        demonSelectDropdown.appendChild(option);
+      });
     });
   </script>
 

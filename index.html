@@ -27,7 +27,6 @@
       background: linear-gradient(135deg, #1f1c2c, #928dab);
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-      position: relative;
     }
 
     header h1 {
@@ -41,34 +40,12 @@
       margin-top: 5px;
     }
 
-    .action-bar {
-      max-width: 800px;
-      margin: 0 auto 20px auto;
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    .submit-trigger-btn {
-      padding: 12px 24px;
-      background: #ff4757;
-      border: none;
-      border-radius: 6px;
-      color: #fff;
-      font-weight: bold;
-      font-size: 1rem;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(255,71,87,0.3);
-      transition: background 0.2s, transform 0.1s;
-    }
-
-    .submit-trigger-btn:hover {
-      background: #ff6b81;
-      transform: translateY(-2px);
-    }
-
     .container {
       max-width: 800px;
       margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
     }
 
     .card {
@@ -76,6 +53,14 @@
       border: 1px solid #2a2f3d;
       border-radius: 10px;
       padding: 20px;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      color: #ff4757;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #ff4757;
+      padding-bottom: 8px;
     }
 
     /* DEMON LIST STYLES */
@@ -128,57 +113,6 @@
       font-size: 0.88rem;
       color: #a4b0be;
       margin-top: 5px;
-    }
-
-    /* MODAL POPUP STYLES */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(4px);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-
-    .modal-content {
-      background: #161922;
-      border: 1px solid #3a3f52;
-      border-radius: 12px;
-      width: 100%;
-      max-width: 550px;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 25px;
-      position: relative;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 1.8rem;
-      color: #a4b0be;
-      cursor: pointer;
-      line-height: 1;
-    }
-
-    .modal-close:hover {
-      color: #fff;
-    }
-
-    .modal-title {
-      font-size: 1.4rem;
-      color: #ff4757;
-      margin-bottom: 15px;
-      border-bottom: 2px solid #ff4757;
-      padding-bottom: 8px;
     }
 
     /* RULES BOX */
@@ -258,31 +192,25 @@
     <p>Official Geometry Dash Extreme Rankings</p>
   </header>
 
-  <div class="action-bar">
-    <button class="submit-trigger-btn" id="openModalBtn">Submit Record</button>
-  </div>
-
   <main class="container">
+    
     <section class="card">
+      <h2 class="section-title">Top Levels</h2>
       <div id="demon-list">
         </div>
     </section>
-  </main>
 
-  <div class="modal-overlay" id="submitModal">
-    <div class="modal-content">
-      <span class="modal-close" id="closeModalBtn">&times;</span>
-      
-      <h2 class="modal-title">Submit Record</h2>
+    <section class="card">
+      <h2 class="section-title">Submit a Record</h2>
 
       <div class="rules-box">
         <h3>Submission Rules</h3>
         <ul>
           <li><strong>Min Progress:</strong> You must have achieved at least <strong>50%</strong> completion.</li>
-          <li><strong>Cheat Indicator:</strong> Must be visibly active on-screen throughout.</li>
+          <li><strong>Cheat Indicator:</strong> Must be visibly active on-screen throughout the run.</li>
           <li><strong>Audible Clicks:</strong> Raw click/tap audio must be clearly audible.</li>
           <li><strong>No Cuts or Edits:</strong> Spliced, cut, or edited videos will be rejected.</li>
-          <li><strong>Supported Host:</strong> Video proof must be on <strong>YouTube</strong> or <strong>Twitch</strong>.</li>
+          <li><strong>Supported Host:</strong> Video proof must be hosted on <strong>YouTube</strong> or <strong>Twitch</strong>.</li>
         </ul>
       </div>
 
@@ -304,102 +232,92 @@
         <label for="video">Video Proof Link (YouTube / Twitch):</label>
         <input type="url" id="video" name="Video Link" placeholder="https://www.youtube.com/watch?v=..." required>
 
-        <label for="notes">Additional Notes / Raw Footage:</label>
+        <label for="notes">Additional Notes / Raw Footage Link:</label>
         <textarea id="notes" name="Notes" rows="2" placeholder="Refresh rate, device, raw video link, etc."></textarea>
 
-        <button type="submit" class="submit-btn">Submit to List</button>
+        <button type="submit" class="submit-btn">Submit Record</button>
       </form>
-    </div>
-  </div>
+    </section>
+
+  </main>
 
   <script>
     /* =========================================================
-       DATA SETUP
-       Add 'rank' to control placement order in the list.
+       DEMON DATA
     ========================================================= */
-const demonData = [
-  {
-    rank: 1,
-    name: "society",
-    img: "society.png",
-    link: "https://www.youtube.com/watch?v=3CoEaH1CM7o",
-    desc: "the new hardest geometry dash level"
-  }
-];
     const demonData = [
-  {
-    rank: 2,
-    name: "thinking space 2",
-    img: "ts2.png",
-    link: "https://www.youtube.com/watch?v=CELNmHwln_c",
-    desc: "the hardest level in geometry dash for 278 days"
-  }
-];
-const demonData = [
-  {
-    rank: 3,
-    name: "flamewall",
-    img: "flamewall.png",
-    link: "https://www.youtube.com/watch?v=gwNYGFmo_WY",
-    desc: "one of the longest top 100 geometry dash levels"
-  },
-  const demonData = [
-  {
-    rank: 4,
-    name: "amethyst",
-    img: "amethyst.png",
-    link: "https://www.youtube.com/watch?v=KfShSCp8vM4",
-    desc: "often thought of to be harder than thinking space 2"
-  },
-   const demonData = [
-  {
-    rank: 5,
-    name: "tidal wave",
-    img: "tw.png",
-    link: "https://www.youtube.com/watch?v=frjtBcNI6dI",
-    desc: "has 200 frame perfects"
-  },
-   const demonData = [
-  {
-    rank: 6,
-    name: "green bullet",
-    img: "gb.png",
-    link: "https://www.youtube.com/watch?v=zfTqKYeqhTo",
-    desc: "the person who beat the level (nicknam09) took 105,000 attempts+ to beat the level"
-  },
-  const demonData = [
-  {
-    rank: 7,
-    name: "orbit",
-    img: "orbit.png",
-    link: "https://www.youtube.com/watch?v=HWg8dtItGCA",
-    desc: "known for every jump being an orb"
-  },
-  const demonData = [
-  {
-    rank: 7,
-    name: "nullscapes",
-    img: "ns.png",
-    link: "https://www.youtube.com/watch?v=C-KDhWkXlvI",
-    desc: "known for its robot"
-  },
-    const demonData = [
-  {
-    rank: 8,
-    name: "Quanteuse processing",
-    img: "qp.png",
-    link: "https://www.youtube.com/watch?v=sRUO72zI2GQ",
-    desc: "known for its trolls"
-  },
-    const demonData = [
-  {
-    rank: 9,
-    name: "boobawamba",
-    img: "bw.png",
-    link: "https://www.youtube.com/watch?v=TAPij318cjE",
-    desc: "idk what to say"
-  },
-  {
+      {
+        rank: 1,
+        name: "society",
+        img: "society.png",
+        link: "https://www.youtube.com/watch?v=3CoEaH1CM7o",
+        desc: "the new hardest geometry dash level"
+      },
+      {
+        rank: 2,
+        name: "thinking space 2",
+        img: "ts2.png",
+        link: "https://www.youtube.com/watch?v=CELNmHwln_c",
+        desc: "the hardest level in geometry dash for 278 days"
+      },
+      {
+        rank: 3,
+        name: "flamewall",
+        img: "flamewall.png",
+        link: "https://www.youtube.com/watch?v=gwNYGFmo_WY",
+        desc: "one of the longest top 100 geometry dash levels"
+      },
+      {
+        rank: 4,
+        name: "amethyst",
+        img: "amethyst.png",
+        link: "https://www.youtube.com/watch?v=KfShSCp8vM4",
+        desc: "often thought of to be harder than thinking space 2"
+      },
+      {
+        rank: 5,
+        name: "tidal wave",
+        img: "tw.png",
+        link: "https://www.youtube.com/watch?v=frjtBcNI6dI",
+        desc: "has 200 frame perfects"
+      },
+      {
+        rank: 6,
+        name: "green bullet",
+        img: "gb.png",
+        link: "https://www.youtube.com/watch?v=zfTqKYeqhTo",
+        desc: "the person who beat the level (nicknam09) took 105,000 attempts+ to beat the level"
+      },
+      {
+        rank: 7,
+        name: "orbit",
+        img: "orbit.png",
+        link: "https://www.youtube.com/watch?v=HWg8dtItGCA",
+        desc: "known for every jump being an orb"
+      },
+      {
+        rank: 8,
+        name: "nullscapes",
+        img: "ns.png",
+        link: "https://www.youtube.com/watch?v=C-KDhWkXlvI",
+        desc: "known for its robot"
+      },
+      {
+        rank: 9,
+        name: "Quanteuse processing",
+        img: "qp.png",
+        link: "https://www.youtube.com/watch?v=sRUO72zI2GQ",
+        desc: "known for its trolls"
+      },
+      {
+        rank: 10,
+        name: "boobawamba",
+        img: "bw.png",
+        link: "https://www.youtube.com/watch?v=TAPij318cjE",
+        desc: "idk what to say"
+      }
+    ];
+
     /* =========================================================
        DYNAMIC RENDERING LOGIC
     ========================================================= */
@@ -417,7 +335,7 @@ const demonData = [
       item.className = 'list-item';
       item.innerHTML = `
         <div class="rank">#${demon.rank}</div>
-        <img src="${demon.img}" alt="${demon.name}" class="level-img">
+        <img src="${demon.img}" alt="${demon.name}" class="level-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/110x65/1f2430/ffffff?text=No+Image';">
         <div class="level-info">
           <a href="${demon.link}" target="_blank" class="level-title">${demon.name}</a>
           <p class="level-desc">${demon.desc}</p>
@@ -431,23 +349,6 @@ const demonData = [
       option.textContent = `#${demon.rank} - ${demon.name}`;
       demonSelectDropdown.appendChild(option);
     });
-
-    /* =========================================================
-       MODAL POPUP LOGIC
-    ========================================================= */
-    const modal = document.getElementById('submitModal');
-    const openBtn = document.getElementById('openModalBtn');
-    const closeBtn = document.getElementById('closeModalBtn');
-
-    openBtn.onclick = () => { modal.style.display = 'flex'; };
-    closeBtn.onclick = () => { modal.style.display = 'none'; };
-
-    // Close modal if user clicks background dark area
-    window.onclick = (e) => {
-      if (e.target === modal) {
-        modal.style.display = 'none';
-      }
-    };
   </script>
 
 </body>

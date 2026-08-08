@@ -19,7 +19,7 @@
     }
 
     header {
-      max-width: 850px;
+      max-width: 900px;
       margin: 0 auto 15px auto;
       text-align: center;
       padding: 25px 10px;
@@ -42,7 +42,7 @@
 
     /* AUTH BAR */
     .auth-bar {
-      max-width: 850px;
+      max-width: 900px;
       margin: 0 auto 20px auto;
       background: #161922;
       border: 1px solid #2a2f3d;
@@ -56,9 +56,26 @@
     .user-badge {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       font-size: 0.95rem;
+      flex-wrap: wrap;
     }
+
+    .role-badge {
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .role-boss { background: linear-gradient(45deg, #a55eea, #ff007f); color: #fff; box-shadow: 0 0 8px #a55eea; }
+    .role-dev { background: #00d2d3; color: #000; }
+    .role-super-admin { background: #ff3838; color: #fff; }
+    .role-admin { background: #ff4757; color: #fff; }
+    .role-leaderboard-mod { background: #1e90ff; color: #fff; }
+    .role-mod { background: #ffa502; color: #000; }
+    .role-user { background: #2ed573; color: #000; }
 
     .xp-pill {
       background: #ffa502;
@@ -92,7 +109,7 @@
 
     /* NAVIGATION TABS */
     .nav-tabs {
-      max-width: 850px;
+      max-width: 900px;
       margin: 0 auto 20px auto;
       display: flex;
       gap: 10px;
@@ -121,7 +138,36 @@
       color: #000;
     }
 
-    /* DISCORD BUTTON STYLING */
+    .tab-btn.admin-tab-btn {
+      background: #3d1218;
+      color: #ff4757;
+      border: 1px solid #ff4757;
+    }
+    .tab-btn.admin-tab-btn:hover, .tab-btn.admin-tab-btn.active {
+      background: #ff4757;
+      color: #fff;
+    }
+
+    .tab-btn.mod-tab-btn {
+      background: #3b2b11;
+      color: #ffa502;
+      border: 1px solid #ffa502;
+    }
+    .tab-btn.mod-tab-btn:hover, .tab-btn.mod-tab-btn.active {
+      background: #ffa502;
+      color: #000;
+    }
+
+    .tab-btn.lmod-tab-btn {
+      background: #10263e;
+      color: #1e90ff;
+      border: 1px solid #1e90ff;
+    }
+    .tab-btn.lmod-tab-btn:hover, .tab-btn.lmod-tab-btn.active {
+      background: #1e90ff;
+      color: #fff;
+    }
+
     .discord-btn {
       background: #5865F2 !important;
       color: #ffffff !important;
@@ -133,7 +179,6 @@
       color: #ffffff !important;
     }
 
-    /* RED AURA NOTIFICATION BADGE */
     .badge {
       background: #ff4757;
       color: #fff;
@@ -142,22 +187,18 @@
       font-size: 0.75rem;
       margin-left: 6px;
       font-weight: bold;
-      box-shadow: 0 0 10px #ff4757, 0 0 20px #ff4757;
+      box-shadow: 0 0 10px #ff4757;
       animation: pulse-aura 1.5s infinite alternate;
     }
 
     @keyframes pulse-aura {
-      0% {
-        box-shadow: 0 0 5px #ff4757, 0 0 10px #ff4757;
-      }
-      100% {
-        box-shadow: 0 0 12px #ff4757, 0 0 25px #ff4757;
-      }
+      0% { box-shadow: 0 0 5px #ff4757; }
+      100% { box-shadow: 0 0 15px #ff4757; }
     }
 
     /* CONTAINER & CARDS */
     .container {
-      max-width: 850px;
+      max-width: 900px;
       margin: 0 auto;
     }
 
@@ -215,11 +256,6 @@
       border-radius: 6px;
       background-color: #2a2f3d;
       display: block;
-      transition: opacity 0.2s;
-    }
-
-    .level-img:hover {
-      opacity: 0.8;
     }
 
     .level-info {
@@ -234,17 +270,19 @@
       text-transform: capitalize;
     }
 
-    .level-info:hover .level-title {
-      color: #70a1ff;
-    }
-
     .level-desc {
       font-size: 0.88rem;
       color: #a4b0be;
       margin-top: 5px;
     }
 
-    /* LEADERBOARD TABLE */
+    .xp-reward-badge {
+      color: #2ed573;
+      font-weight: bold;
+      font-size: 0.85rem;
+    }
+
+    /* TABLES */
     table {
       width: 100%;
       border-collapse: collapse;
@@ -262,7 +300,6 @@
       color: #00ffff;
     }
 
-    /* RULES BOX */
     .rules-box {
       background: #1a1e29;
       border-left: 4px solid #ffa502;
@@ -284,11 +321,6 @@
       color: #d1d5db;
     }
 
-    .rules-box li {
-      margin-bottom: 6px;
-    }
-
-    /* FORMS & INPUTS */
     label {
       display: block;
       font-size: 0.85rem;
@@ -314,7 +346,7 @@
     }
 
     .submit-btn {
-      margin-top: 20px;
+      margin-top: 15px;
       width: 100%;
       padding: 12px;
       background: #2ed573;
@@ -324,12 +356,25 @@
       font-weight: bold;
       font-size: 1rem;
       cursor: pointer;
-      transition: background 0.2s;
     }
 
-    .submit-btn:hover {
-      background: #26af5f;
+    .submit-btn:hover { background: #26af5f; }
+
+    .btn-small {
+      padding: 5px 10px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: bold;
+      margin-right: 4px;
+      margin-top: 2px;
     }
+
+    .btn-danger { background: #ff4757; color: #fff; }
+    .btn-warn { background: #ffa502; color: #000; }
+    .btn-success { background: #2ed573; color: #000; }
+    .btn-primary { background: #70a1ff; color: #000; }
 
     /* INBOX ITEMS */
     .inbox-item {
@@ -340,24 +385,15 @@
       margin-bottom: 12px;
     }
 
-    .inbox-item.unread {
-      border-left: 4px solid #ff4757;
-      background: #252331;
+    .admin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 15px;
     }
 
-    .inbox-item h4 {
-      color: #ffa502;
-      margin-bottom: 5px;
-    }
-
-    .new-tag {
-      background: #ff4757;
-      color: #fff;
-      font-size: 0.7rem;
-      padding: 2px 6px;
-      border-radius: 4px;
-      margin-left: 8px;
-      font-weight: bold;
+    @media (max-width: 600px) {
+      .admin-grid { grid-template-columns: 1fr; }
     }
 
     /* MODAL POPUPS */
@@ -390,10 +426,6 @@
       font-size: 1.8rem;
       color: #a4b0be;
       cursor: pointer;
-    }
-
-    .modal-close:hover {
-      color: #fff;
     }
 
     .victors-list {
@@ -435,8 +467,13 @@
     <button class="tab-btn" onclick="switchTab('leaderboards', this)">Leaderboards</button>
     <button class="tab-btn" onclick="switchTab('clans', this)">Clans</button>
     <button class="tab-btn" onclick="switchTab('submit', this)">Submit Record</button>
+    <button class="tab-btn" onclick="switchTab('submitLevel', this)">Submit Custom Level</button>
     <button class="tab-btn" onclick="switchTab('inbox', this)">Inbox <span id="inboxBadge" class="badge" style="display:none;">0</span></button>
     
+    <button id="lmodTabBtn" class="tab-btn lmod-tab-btn" style="display:none;" onclick="switchTab('lmod', this)">Leaderboard Mod Panel</button>
+    <button id="modTabBtn" class="tab-btn mod-tab-btn" style="display:none;" onclick="switchTab('mod', this)">Mod Panel</button>
+    <button id="adminTabBtn" class="tab-btn admin-tab-btn" style="display:none;" onclick="switchTab('admin', this)">Admin Panel</button>
+
     <a href="https://discord.gg/s95NF83XTD" target="_blank" class="tab-btn discord-btn">Join Discord</a>
   </div>
 
@@ -457,9 +494,10 @@
             <tr>
               <th>Rank</th>
               <th>Player</th>
+              <th>Role</th>
               <th>Clan</th>
               <th>XP</th>
-              <th>Levels Beat</th>
+              <th>Demons Beat</th>
             </tr>
           </thead>
           <tbody id="leaderboardBody"></tbody>
@@ -471,7 +509,7 @@
       <section class="card">
         <h2 class="section-title">Clans & Total Clan XP</h2>
         <p style="color:#a4b0be; font-size:0.85rem; margin-bottom:12px;">
-          ⚠️ You must have at least <strong style="color:#ffa502;">1000 XP</strong> to create or set a clan tag.
+          ⚠️ You must have at least <strong style="color:#ffa502;">1000 XP</strong> to set a clan tag.
         </p>
         <div style="margin-bottom: 15px;">
           <input type="text" id="clanInput" placeholder="Enter Clan Tag (e.g. [PRO])" style="width: 70%; display: inline-block;">
@@ -493,16 +531,982 @@
     <div id="submitTab" class="tab-content">
       <section class="card">
         <h2 class="section-title">Submit a Record</h2>
-
         <div class="rules-box">
           <h3>Submission Rules</h3>
           <ul>
-            <li><strong>Min Progress:</strong> You must have achieved at least <strong>50%</strong> completion.</li>
-            <li><strong>Cheat Indicator:</strong> Must be visibly active on-screen throughout the run.</li>
-            <li><strong>Audible Clicks:</strong> Raw click/tap audio must be clearly audible.</li>
-            <li><strong>No Cuts or Edits:</strong> Spliced, cut, or edited videos will be rejected.</li>
-            <li><strong>Supported Host:</strong> Video proof must be hosted on <strong>YouTube</strong> or <strong>Twitch</strong>.</li>
+            <li><strong>Min Progress:</strong> 50% or higher required.</li>
+            <li><strong>Cheat Indicator:</strong> Must be visibly active on-screen.</li>
+            <li><strong>Audio:</strong> Raw clicks/taps must be clear.</li>
+            <li><strong>Proof:</strong> Video hosted on YouTube or Twitch.</li>
           </ul>
         </div>
+        <form onsubmit="handleSubmission(event)">
+          <label>Demon Defeated:</label>
+          <select id="submitDemon" required></select>
 
-        <p style="color:#a4b0be; font-size:0.9rem; margin-bottom:
+          <label>Progress Percentage (%):</label>
+          <input type="number" id="submitProgress" min="50" max="100" placeholder="50 - 100" required>
+
+          <label>Video Proof Link:</label>
+          <input type="url" id="submitVideo" placeholder="https://www.youtube.com/watch?v=..." required>
+
+          <label>Additional Notes:</label>
+          <textarea id="submitNotes" rows="2" placeholder="FPS, device, raw video link..."></textarea>
+
+          <button type="submit" class="submit-btn">Send Submission to Moderation Staff</button>
+        </form>
+      </section>
+    </div>
+
+    <div id="submitLevelTab" class="tab-content">
+      <section class="card">
+        <h2 class="section-title" style="color:#00ffff; border-color:#00ffff;">🛠️ Submit a Custom Created Level</h2>
+        <p style="color:#a4b0be; margin-bottom:15px; font-size:0.9rem;">
+          Created a new top level? Submit it here! Leaderboard Mods and Admins will review it and decide where to place it on the Demon List.
+        </p>
+        <form onsubmit="handleLevelProposal(event)">
+          <label>Level Name:</label>
+          <input type="text" id="propLevelName" placeholder="e.g. Acheron 2" required>
+
+          <label>Level Description / Lore:</label>
+          <textarea id="propLevelDesc" rows="2" placeholder="Brief level description or features..." required></textarea>
+
+          <label>Verification / Showcase Video Link:</label>
+          <input type="url" id="propLevelVideo" placeholder="https://www.youtube.com/watch?v=..." required>
+
+          <label>Thumbnail Image File/URL (Optional):</label>
+          <input type="text" id="propLevelImg" placeholder="image.png or URL (default: default.png)">
+
+          <button type="submit" class="submit-btn" style="background:#70a1ff;">Submit Level for Review</button>
+        </form>
+      </section>
+    </div>
+
+    <div id="inboxTab" class="tab-content">
+      <section class="card">
+        <h2 class="section-title">Your Inbox</h2>
+        <div id="inboxContainer"></div>
+      </section>
+    </div>
+
+    <div id="lmodTab" class="tab-content">
+      <section class="card">
+        <h2 class="section-title" style="color:#1e90ff; border-color:#1e90ff;">📊 Leaderboard Mod Control Panel</h2>
+        <p style="color:#a4b0be; margin-bottom:15px; font-size:0.9rem;">
+          Review proposed custom levels submitted by players and place them onto the Demon List at specific ranks.
+        </p>
+        
+        <h3>Proposed Levels Queue</h3>
+        <div id="lmodLevelQueueContainer" style="margin-top:10px;"></div>
+      </section>
+    </div>
+
+    <div id="modTab" class="tab-content">
+      <section class="card">
+        <h2 class="section-title" style="color:#ffa502; border-color:#ffa502;">🛡️ Moderation Control Panel</h2>
+        <p style="color:#a4b0be; margin-bottom:15px; font-size:0.9rem;">Review record submissions and manage player moderation.</p>
+
+        <h3 style="margin-bottom:10px;">Pending Record Submissions</h3>
+        <div id="modSubmissionsContainer" style="margin-bottom:25px;"></div>
+
+        <h3 style="margin-bottom:10px;">Player Moderation Actions (Kick / Ban)</h3>
+        <div style="background:#1f2430; padding:15px; border-radius:8px;">
+          <label>Target Username:</label>
+          <input type="text" id="modTargetUser" placeholder="@username">
+          <div style="display:flex; gap:10px; margin-top:10px;">
+            <button onclick="modAction('kick')" class="btn-small btn-warn" style="flex:1; padding:8px;">Kick User (Force Logout)</button>
+            <button onclick="modAction('ban')" class="btn-small btn-danger" style="flex:1; padding:8px;">Ban User</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="adminTab" class="tab-content">
+      <section class="card">
+        <h2 class="section-title" style="color:#ff4757; border-color:#ff4757;">👑 Administrator Dashboard</h2>
+        <p style="color:#a4b0be; margin-bottom:15px; font-size:0.9rem;">Full community administration controls.</p>
+
+        <div class="admin-grid">
+          <div style="background:#1f2430; padding:15px; border-radius:8px;">
+            <h3 style="color:#00ffff; font-size:1rem; margin-bottom:8px;">Award Demon Record</h3>
+            <label>Target Username:</label>
+            <input type="text" id="adminAwardUser" placeholder="@username">
+            <label>Demon Level:</label>
+            <select id="adminAwardDemon"></select>
+            <button onclick="adminAwardDemon()" class="submit-btn btn-success">Grant Completion & XP</button>
+          </div>
+
+          <div style="background:#1f2430; padding:15px; border-radius:8px;">
+            <h3 style="color:#ffa502; font-size:1rem; margin-bottom:8px;">Remove / Modify Player XP</h3>
+            <label>Target Username:</label>
+            <input type="text" id="adminXPUser" placeholder="@username">
+            <label>XP Amount (use negative numbers like -500 to subtract):</label>
+            <input type="number" id="adminXPAmount" placeholder="e.g. -1000 or 500">
+            <div style="display:flex; gap:8px; margin-top:10px;">
+              <button onclick="adminModifyXP()" class="btn-small btn-warn" style="flex:1; padding:8px;">Adjust XP</button>
+              <button onclick="adminResetXP()" class="btn-small btn-danger" style="flex:1; padding:8px;">Reset All XP to 0</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:#1f2430; padding:15px; border-radius:8px; margin-top:15px;">
+          <h3 style="color:#2ed573; font-size:1rem; margin-bottom:8px;">Broadcast System Message</h3>
+          <textarea id="adminBroadcastText" rows="2" placeholder="Message to send to ALL user inboxes..."></textarea>
+          <button onclick="adminBroadcast()" class="submit-btn btn-primary">Send Announcement</button>
+        </div>
+
+        <h3 style="margin-top:25px; margin-bottom:10px;">User Accounts & Role Management</h3>
+        <p style="font-size:0.8rem; color:#ffa502; margin-bottom:10px;">
+          ℹ️ Note: Only <strong>@pandy</strong> can assign roles or ban staff members.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Role</th>
+              <th>XP</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="adminUserTable"></tbody>
+        </table>
+      </section>
+    </div>
+
+  </main>
+
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('loginModal')">&times;</span>
+      <h2 style="color:#00ffff; margin-bottom:15px;">Login</h2>
+      <form onsubmit="handleLogin(event)">
+        <label>Username:</label>
+        <input type="text" id="loginUsername" placeholder="@pandy" required>
+        <label>Password:</label>
+        <input type="password" id="loginPassword" required>
+        <button type="submit" class="submit-btn">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="registerModal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('registerModal')">&times;</span>
+      <h2 style="color:#00ffff; margin-bottom:15px;">Register Account</h2>
+      <form onsubmit="handleRegister(event)">
+        <label>Username:</label>
+        <input type="text" id="regUsername" placeholder="e.g. pandy or @pandy" required>
+        <label>Password:</label>
+        <input type="password" id="regPassword" required>
+        <button type="submit" class="submit-btn">Create Account</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="victorsModal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('victorsModal')">&times;</span>
+      <h2 style="color:#00ffff; margin-bottom:15px;" id="victorsModalTitle">Victors</h2>
+      <ul class="victors-list" id="victorsList"></ul>
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'gd_demon_users_v4';
+    const DEMONS_KEY = 'gd_demon_list_v4';
+    const PROPOSALS_KEY = 'gd_level_proposals_v4';
+
+    /* INITIAL DEMON LIST DATA */
+    const defaultDemonData = [
+      { rank: 1, name: "society", img: "society.png", link: "https://www.youtube.com/watch?v=3CoEaH1CM7o", desc: "the new hardest geometry dash level", victors: [] },
+      { rank: 2, name: "thinking space 2", img: "ts2.png", link: "https://www.youtube.com/watch?v=CELNmHwln_c", desc: "the hardest level in geometry dash for 278 days", victors: [] },
+      { rank: 3, name: "flamewall", img: "flamewall.png", link: "https://www.youtube.com/watch?v=gwNYGFmo_WY", desc: "one of the longest top 100 geometry dash levels", victors: [] },
+      { rank: 4, name: "amethyst", img: "amethyst.png", link: "https://www.youtube.com/watch?v=KfShSCp8vM4", desc: "often thought of to be harder than thinking space 2", victors: [] },
+      { rank: 5, name: "tidal wave", img: "tw.png", link: "https://www.youtube.com/watch?v=frjtBcNI6dI", desc: "has 200 frame perfects", victors: [] },
+      { rank: 6, name: "green bullet", img: "gb.png", link: "https://www.youtube.com/watch?v=zfTqKYeqhTo", desc: "nicknam09 took 105,000+ attempts to beat", victors: [] },
+      { rank: 7, name: "orbit", img: "orbit.png", link: "https://www.youtube.com/watch?v=HWg8dtItGCA", desc: "known for every jump being an orb", victors: [] },
+      { rank: 8, name: "nullscapes", img: "ns.png", link: "https://www.youtube.com/watch?v=C-KDhWkXlvI", desc: "known for its robot", victors: [] },
+      { rank: 9, name: "Quanteuse processing", img: "qp.png", link: "https://www.youtube.com/watch?v=sRUO72zI2GQ", desc: "known for its trolls", victors: [] },
+      { rank: 10, name: "boobawamba", img: "bw.png", link: "https://www.youtube.com/watch?v=TAPij318cjE", desc: "classic extreme demon", victors: [] }
+    ];
+
+    function getDemonList() {
+      let list = JSON.parse(localStorage.getItem(DEMONS_KEY) || 'null');
+      if (!list) {
+        list = defaultDemonData;
+        saveDemonList(list);
+      }
+      return list;
+    }
+
+    function saveDemonList(list) {
+      localStorage.setItem(DEMONS_KEY, JSON.stringify(list));
+    }
+
+    function getProposals() {
+      return JSON.parse(localStorage.getItem(PROPOSALS_KEY) || '[]');
+    }
+
+    function saveProposals(props) {
+      localStorage.setItem(PROPOSALS_KEY, JSON.stringify(props));
+    }
+
+    // XP FORMULA: Rank 1 = 10,000 XP; -5 XP per rank lower
+    function calculateDemonXP(rank) {
+      return Math.max(100, 10000 - ((rank - 1) * 5));
+    }
+
+    /* DATABASE INITIALIZATION */
+    function getDBUsers() {
+      let users = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      
+      // ENSURE @pandy IS ALWAYS PRESENT & ALWAYS BOSS RANK
+      if (!users['@pandy']) {
+        users['@pandy'] = {
+          username: '@pandy',
+          password: 'password123',
+          xp: 100000,
+          levelsBeat: [],
+          clan: '[BOSS]',
+          inbox: [],
+          role: 'boss',
+          isBanned: false,
+          isKicked: false
+        };
+      } else {
+        users['@pandy'].role = 'boss'; // Hard enforce boss rank for pandy
+      }
+
+      saveDBUsers(users);
+      return users;
+    }
+
+    function saveDBUsers(users) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+    }
+
+    let currentUser = localStorage.getItem('gd_current_user') || null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      checkKickOrBanStatus();
+      renderDemonList();
+      renderLeaderboards();
+      renderClans();
+      updateAuthUI();
+      renderInbox();
+    });
+
+    function checkKickOrBanStatus() {
+      if (!currentUser) return;
+      const users = getDBUsers();
+      const me = users[currentUser];
+
+      if (me) {
+        if (me.isBanned) {
+          alert('🚨 Your account has been permanently banned from the community.');
+          logout();
+          return;
+        }
+        if (me.isKicked) {
+          alert('⚠️ You have been kicked by a moderator. Please log back in.');
+          me.isKicked = false; // reset kicked flag on database
+          saveDBUsers(users);
+          logout();
+          return;
+        }
+      }
+    }
+
+    /* UI NAVIGATION */
+    function switchTab(tabName, btnEl) {
+      checkKickOrBanStatus();
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+      document.getElementById(`${tabName}Tab`).classList.add('active');
+      if (btnEl) btnEl.classList.add('active');
+
+      if (tabName === 'leaderboards') renderLeaderboards();
+      if (tabName === 'clans') renderClans();
+      if (tabName === 'inbox') renderInbox();
+      if (tabName === 'admin') renderAdminDashboard();
+      if (tabName === 'mod') renderModPanel();
+      if (tabName === 'lmod') renderLmodPanel();
+    }
+
+    function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+    /* AUTHENTICATION & PERMISSIONS */
+    function updateAuthUI() {
+      const users = getDBUsers();
+      const userDisplay = document.getElementById('userDisplay');
+      const authBtns = document.getElementById('authBtns');
+
+      const adminTabBtn = document.getElementById('adminTabBtn');
+      const modTabBtn = document.getElementById('modTabBtn');
+      const lmodTabBtn = document.getElementById('lmodTabBtn');
+
+      if (currentUser && users[currentUser]) {
+        const u = users[currentUser];
+        const role = u.role || 'user';
+        
+        let roleClass = 'role-user';
+        if (role === 'boss') roleClass = 'role-boss';
+        else if (role === 'dev') roleClass = 'role-dev';
+        else if (role === 'super admin') roleClass = 'role-super-admin';
+        else if (role === 'admin') roleClass = 'role-admin';
+        else if (role === 'leaderboard mod') roleClass = 'role-leaderboard-mod';
+        else if (role === 'mod') roleClass = 'role-mod';
+
+        userDisplay.innerHTML = `
+          <strong>${u.username}</strong>
+          <span class="role-badge ${roleClass}">${role}</span>
+          ${u.clan ? `<span class="clan-tag">${u.clan}</span>` : ''}
+          <span class="xp-pill">${u.xp} XP</span>
+        `;
+        authBtns.innerHTML = `<button class="logout" onclick="logout()">Logout</button>`;
+
+        // TAB PERMISSIONS BY ROLE
+        const canAdmin = ['boss', 'dev', 'super admin', 'admin'].includes(role);
+        const canMod = ['boss', 'dev', 'super admin', 'admin', 'mod'].includes(role);
+        const canLmod = ['boss', 'dev', 'super admin', 'leaderboard mod'].includes(role);
+
+        adminTabBtn.style.display = canAdmin ? 'inline-block' : 'none';
+        modTabBtn.style.display = canMod ? 'inline-block' : 'none';
+        lmodTabBtn.style.display = canLmod ? 'inline-block' : 'none';
+
+        const badge = document.getElementById('inboxBadge');
+        const unreadCount = u.inbox ? u.inbox.filter(m => !m.read).length : 0;
+        badge.style.display = unreadCount > 0 ? 'inline-block' : 'none';
+        badge.textContent = unreadCount;
+
+      } else {
+        userDisplay.innerHTML = `<span>Not Logged In</span>`;
+        authBtns.innerHTML = `
+          <button onclick="openModal('loginModal')">Login</button>
+          <button onclick="openModal('registerModal')">Register</button>
+        `;
+        adminTabBtn.style.display = 'none';
+        modTabBtn.style.display = 'none';
+        lmodTabBtn.style.display = 'none';
+      }
+    }
+
+    function handleRegister(e) {
+      e.preventDefault();
+      let user = document.getElementById('regUsername').value.trim();
+      if (!user.startsWith('@')) user = '@' + user;
+      const pass = document.getElementById('regPassword').value;
+
+      const users = getDBUsers();
+      
+      if (users[user] && users[user].password !== "") {
+        alert('Username already taken!');
+        return;
+      }
+
+      users[user] = {
+        username: user,
+        password: pass,
+        xp: 0,
+        levelsBeat: [],
+        clan: "",
+        inbox: [],
+        role: user === '@pandy' ? 'boss' : 'user',
+        isBanned: false,
+        isKicked: false
+      };
+
+      saveDBUsers(users);
+      currentUser = user;
+      localStorage.setItem('gd_current_user', currentUser);
+      closeModal('registerModal');
+      updateAuthUI();
+      alert(`Account registered! Logged in as ${user} (0 XP)`);
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      let user = document.getElementById('loginUsername').value.trim();
+      if (!user.startsWith('@')) user = '@' + user;
+      const pass = document.getElementById('loginPassword').value;
+
+      const users = getDBUsers();
+      if (users[user] && users[user].password === pass) {
+        if (users[user].isBanned) {
+          alert('🚫 This account is permanently banned.');
+          return;
+        }
+
+        users[user].isKicked = false;
+        saveDBUsers(users);
+
+        currentUser = user;
+        localStorage.setItem('gd_current_user', currentUser);
+        closeModal('loginModal');
+        updateAuthUI();
+        alert(`Logged in as ${user}!`);
+      } else {
+        alert('Invalid credentials!');
+      }
+    }
+
+    function logout() {
+      currentUser = null;
+      localStorage.removeItem('gd_current_user');
+      updateAuthUI();
+      switchTab('list');
+    }
+
+    /* SUBMISSIONS (RECORD & CUSTOM LEVEL) */
+    function handleSubmission(e) {
+      e.preventDefault();
+      checkKickOrBanStatus();
+      if (!currentUser) return alert('Please log in to submit records!');
+
+      const demon = document.getElementById('submitDemon').value;
+      const progress = document.getElementById('submitProgress').value;
+      const video = document.getElementById('submitVideo').value;
+      const notes = document.getElementById('submitNotes').value || "None";
+
+      const users = getDBUsers();
+
+      const subObj = {
+        id: Date.now(),
+        from: currentUser,
+        demon: demon,
+        progress: progress,
+        video: video,
+        notes: notes,
+        date: new Date().toLocaleTimeString()
+      };
+
+      // Notify Staff
+      Object.values(users).forEach(u => {
+        if (['boss','dev','super admin','admin','mod'].includes(u.role)) {
+          if (!u.pendingSubs) u.pendingSubs = [];
+          u.pendingSubs.unshift(subObj);
+        }
+      });
+
+      saveDBUsers(users);
+      alert('Record submitted to staff for review!');
+      e.target.reset();
+    }
+
+    function handleLevelProposal(e) {
+      e.preventDefault();
+      checkKickOrBanStatus();
+      if (!currentUser) return alert('Please log in to submit custom levels!');
+
+      const name = document.getElementById('propLevelName').value.trim();
+      const desc = document.getElementById('propLevelDesc').value.trim();
+      const video = document.getElementById('propLevelVideo').value.trim();
+      const img = document.getElementById('propLevelImg').value.trim() || "society.png";
+
+      const proposals = getProposals();
+      proposals.unshift({
+        id: Date.now(),
+        creator: currentUser,
+        name: name,
+        desc: desc,
+        video: video,
+        img: img,
+        date: new Date().toLocaleDateString()
+      });
+
+      saveProposals(proposals);
+      alert('Your custom level has been submitted! Leaderboard mods and admins will review it.');
+      e.target.reset();
+    }
+
+    function renderInbox() {
+      const container = document.getElementById('inboxContainer');
+      if (!currentUser) {
+        container.innerHTML = `<p style="color:#a4b0be;">Please log in to view your inbox.</p>`;
+        return;
+      }
+
+      const users = getDBUsers();
+      const user = users[currentUser];
+
+      if (!user.inbox || user.inbox.length === 0) {
+        container.innerHTML = `<p style="color:#a4b0be;">Inbox is empty.</p>`;
+        return;
+      }
+
+      user.inbox.forEach(m => m.read = true);
+      saveDBUsers(users);
+      updateAuthUI();
+
+      container.innerHTML = user.inbox.map(msg => `
+        <div class="inbox-item">
+          <h4>From: ${msg.from} <span style="font-size:0.75rem; color:#a4b0be; float:right;">${msg.date || ''}</span></h4>
+          <p style="white-space: pre-line;">${msg.message}</p>
+        </div>
+      `).join('');
+    }
+
+    /* LEADERBOARD MOD PANEL LOGIC */
+    function renderLmodPanel() {
+      const container = document.getElementById('lmodLevelQueueContainer');
+      const proposals = getProposals();
+
+      if (proposals.length === 0) {
+        container.innerHTML = `<p style="color:#a4b0be;">No custom level proposals currently pending.</p>`;
+        return;
+      }
+
+      const demonList = getDemonList();
+
+      container.innerHTML = proposals.map((prop, idx) => `
+        <div style="background:#1f2430; padding:12px; border-radius:6px; margin-bottom:12px;">
+          <h4 style="color:#00ffff;">${prop.name} <span style="font-size:0.8rem; color:#ffa502;">by ${prop.creator}</span></h4>
+          <p style="font-size:0.85rem; color:#a4b0be; margin-top:4px;">${prop.desc}</p>
+          <p style="font-size:0.85rem; margin-top:4px;">
+            Showcase Video: <a href="${prop.video}" target="_blank" style="color:#70a1ff;">Watch Video</a>
+          </p>
+
+          <div style="margin-top:10px; display:flex; gap:10px; align-items:center;">
+            <label style="margin:0;">Place at Rank #:</label>
+            <input type="number" id="placeRank_${idx}" min="1" max="${demonList.length + 1}" value="1" style="width:70px; padding:4px;">
+            <button onclick="approveLevelProposal(${idx})" class="btn-small btn-success">Add to Demon List</button>
+            <button onclick="rejectLevelProposal(${idx})" class="btn-small btn-danger">Reject</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function approveLevelProposal(idx) {
+      const proposals = getProposals();
+      const prop = proposals[idx];
+      const targetRank = parseInt(document.getElementById(`placeRank_${idx}`).value) || 1;
+
+      const demonList = getDemonList();
+
+      // Insert level into Demon List at specified rank
+      const newLevel = {
+        rank: targetRank,
+        name: prop.name,
+        img: prop.img,
+        link: prop.video,
+        desc: prop.desc,
+        victors: []
+      };
+
+      // Shift other ranks
+      demonList.forEach(d => {
+        if (d.rank >= targetRank) d.rank += 1;
+      });
+
+      demonList.push(newLevel);
+      demonList.sort((a, b) => a.rank - b.rank);
+      saveDemonList(demonList);
+
+      // Remove from proposal queue
+      proposals.splice(idx, 1);
+      saveProposals(proposals);
+
+      // Notify Creator
+      const users = getDBUsers();
+      if (users[prop.creator]) {
+        users[prop.creator].inbox.unshift({
+          from: "📊 Leaderboard Team",
+          message: `🎉 Great news! Your custom level "${prop.name}" has been accepted and placed at Rank #${targetRank} on the Demon List!`,
+          date: new Date().toLocaleTimeString()
+        });
+        saveDBUsers(users);
+      }
+
+      renderLmodPanel();
+      renderDemonList();
+      alert(`Level "${prop.name}" successfully added to the Demon List at Rank #${targetRank}!`);
+    }
+
+    function rejectLevelProposal(idx) {
+      const proposals = getProposals();
+      const prop = proposals[idx];
+      proposals.splice(idx, 1);
+      saveProposals(proposals);
+
+      renderLmodPanel();
+      alert(`Proposal for "${prop.name}" rejected.`);
+    }
+
+    /* MOD PANEL LOGIC */
+    function renderModPanel() {
+      const container = document.getElementById('modSubmissionsContainer');
+      const users = getDBUsers();
+      const me = users[currentUser];
+
+      if (!me || !me.pendingSubs || me.pendingSubs.length === 0) {
+        container.innerHTML = `<p style="color:#a4b0be;">No pending record submissions right now.</p>`;
+        return;
+      }
+
+      container.innerHTML = me.pendingSubs.map((sub, idx) => `
+        <div style="background:#1f2430; padding:12px; border-radius:6px; margin-bottom:10px;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+            <strong>${sub.from} - ${sub.demon} (${sub.progress}%)</strong>
+            <span style="font-size:0.8rem; color:#a4b0be;">${sub.date}</span>
+          </div>
+          <p style="font-size:0.85rem; color:#d1d5db; margin-bottom:8px;">
+            Video: <a href="${sub.video}" target="_blank" style="color:#70a1ff;">Watch Proof</a> | Notes: ${sub.notes}
+          </p>
+          <div>
+            <button onclick="approveSubmission(${idx})" class="btn-small btn-success">Approve & Award XP</button>
+            <button onclick="rejectSubmission(${idx})" class="btn-small btn-danger">Reject</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function approveSubmission(subIndex) {
+      const users = getDBUsers();
+      const me = users[currentUser];
+      const sub = me.pendingSubs[subIndex];
+
+      const target = users[sub.from];
+      const demonList = getDemonList();
+      const demonObj = demonList.find(d => d.name.toLowerCase() === sub.demon.toLowerCase());
+
+      if (target && demonObj) {
+        const xpEarned = calculateDemonXP(demonObj.rank);
+        
+        if (!target.levelsBeat.includes(demonObj.name)) {
+          target.levelsBeat.push(demonObj.name);
+          target.xp += xpEarned;
+        }
+
+        demonObj.victors.push({ name: target.username, link: sub.video });
+        saveDemonList(demonList);
+
+        target.inbox.unshift({
+          from: "@System",
+          message: `🎉 Your record for ${demonObj.name} (${sub.progress}%) was approved! You earned +${xpEarned} XP!`,
+          date: new Date().toLocaleTimeString()
+        });
+      }
+
+      Object.values(users).forEach(u => {
+        if (u.pendingSubs) {
+          u.pendingSubs = u.pendingSubs.filter(s => s.id !== sub.id);
+        }
+      });
+
+      saveDBUsers(users);
+      renderModPanel();
+      alert('Submission approved and XP awarded!');
+    }
+
+    function rejectSubmission(subIndex) {
+      const users = getDBUsers();
+      const me = users[currentUser];
+      const sub = me.pendingSubs[subIndex];
+
+      Object.values(users).forEach(u => {
+        if (u.pendingSubs) {
+          u.pendingSubs = u.pendingSubs.filter(s => s.id !== sub.id);
+        }
+      });
+
+      saveDBUsers(users);
+      renderModPanel();
+      alert('Submission rejected.');
+    }
+
+    function modAction(type) {
+      const usernameInput = document.getElementById('modTargetUser').value.trim();
+      const targetUser = usernameInput.startsWith('@') ? usernameInput : '@' + usernameInput;
+
+      const users = getDBUsers();
+      const me = users[currentUser];
+      const target = users[targetUser];
+
+      if (!target) return alert('User not found!');
+
+      // Staff immunity rules: standard mods/admins cannot kick/ban other staff members. Only @pandy (boss) can!
+      const isTargetStaff = ['boss','dev','super admin','admin','leaderboard mod','mod'].includes(target.role);
+      if (isTargetStaff && me.role !== 'boss') {
+        return alert('⛔ Only @pandy (Boss) has authority to kick or ban staff members!');
+      }
+
+      if (type === 'kick') {
+        target.isKicked = true;
+        saveDBUsers(users);
+        alert(`Successfully kicked ${targetUser}. They will be logged out on their next action.`);
+      } else if (type === 'ban') {
+        target.isBanned = true;
+        saveDBUsers(users);
+        alert(`Permanently banned ${targetUser}.`);
+      }
+
+      document.getElementById('modTargetUser').value = '';
+    }
+
+    /* ADMIN PANEL DASHBOARD */
+    function renderAdminDashboard() {
+      const users = getDBUsers();
+      const tbody = document.getElementById('adminUserTable');
+
+      const isBoss = currentUser === '@pandy';
+
+      tbody.innerHTML = Object.values(users).map(u => `
+        <tr>
+          <td><strong>${u.username}</strong></td>
+          <td><span class="role-badge role-${(u.role || 'user').replace(' ', '-')}">${u.role || 'user'}</span></td>
+          <td><span class="xp-pill">${u.xp} XP</span></td>
+          <td>${u.isBanned ? '<span style="color:#ff4757; font-weight:bold;">BANNED</span>' : '<span style="color:#2ed573;">ACTIVE</span>'}</td>
+          <td>
+            ${isBoss && u.username !== '@pandy' ? `
+              <select onchange="adminAssignRole('${u.username}', this.value)" style="padding:2px; font-size:0.75rem; width:auto;">
+                <option value="">Change Role...</option>
+                <option value="user">User</option>
+                <option value="mod">Mod</option>
+                <option value="leaderboard mod">Leaderboard Mod</option>
+                <option value="admin">Admin</option>
+                <option value="super admin">Super Admin</option>
+                <option value="dev">Dev</option>
+              </select>
+            ` : ''}
+            <button onclick="adminDeleteUser('${u.username}')" class="btn-small btn-danger">Delete</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function adminAssignRole(targetUsername, newRole) {
+      if (!newRole) return;
+      if (currentUser !== '@pandy') {
+        return alert('⛔ Only @pandy can assign community roles!');
+      }
+
+      const users = getDBUsers();
+      if (users[targetUsername]) {
+        users[targetUsername].role = newRole;
+        saveDBUsers(users);
+        renderAdminDashboard();
+        updateAuthUI();
+        alert(`Updated ${targetUsername}'s role to ${newRole.toUpperCase()}`);
+      }
+    }
+
+    function adminAwardDemon() {
+      const username = document.getElementById('adminAwardUser').value.trim();
+      const demonName = document.getElementById('adminAwardDemon').value;
+
+      const users = getDBUsers();
+      const user = users[username.startsWith('@') ? username : '@' + username];
+      const demonList = getDemonList();
+      const demon = demonList.find(d => d.name === demonName);
+
+      if (!user) return alert('User not found!');
+
+      const xpEarned = calculateDemonXP(demon.rank);
+      if (!user.levelsBeat.includes(demon.name)) {
+        user.levelsBeat.push(demon.name);
+        user.xp += xpEarned;
+        saveDBUsers(users);
+        alert(`Granted ${demon.name} to ${user.username}! Awarded +${xpEarned} XP.`);
+      } else {
+        alert('User already beat this demon.');
+      }
+    }
+
+    function adminModifyXP() {
+      const username = document.getElementById('adminXPUser').value.trim();
+      const amount = parseInt(document.getElementById('adminXPAmount').value);
+
+      const users = getDBUsers();
+      const user = users[username.startsWith('@') ? username : '@' + username];
+
+      if (!user || isNaN(amount)) return alert('Invalid User or XP amount');
+
+      user.xp = Math.max(0, user.xp + amount);
+      saveDBUsers(users);
+      renderAdminDashboard();
+      updateAuthUI();
+      alert(`Updated ${user.username}'s XP. New Total: ${user.xp}`);
+    }
+
+    function adminResetXP() {
+      const username = document.getElementById('adminXPUser').value.trim();
+
+      const users = getDBUsers();
+      const user = users[username.startsWith('@') ? username : '@' + username];
+
+      if (!user) return alert('Invalid User');
+
+      user.xp = 0;
+      saveDBUsers(users);
+      renderAdminDashboard();
+      updateAuthUI();
+      alert(`Reset ${user.username}'s XP to 0.`);
+    }
+
+    function adminBroadcast() {
+      const text = document.getElementById('adminBroadcastText').value.trim();
+      if (!text) return;
+
+      const users = getDBUsers();
+      Object.values(users).forEach(u => {
+        if (!u.inbox) u.inbox = [];
+        u.inbox.unshift({
+          from: `👑 ${currentUser} (Admin Announcement)`,
+          message: text,
+          date: new Date().toLocaleTimeString()
+        });
+      });
+
+      saveDBUsers(users);
+      document.getElementById('adminBroadcastText').value = '';
+      alert('Broadcast message sent to all user inboxes!');
+    }
+
+    function adminDeleteUser(username) {
+      if (username === '@pandy') return alert('Cannot delete root Boss account!');
+      if (confirm(`Are you sure you want to delete ${username}?`)) {
+        const users = getDBUsers();
+        delete users[username];
+        saveDBUsers(users);
+        renderAdminDashboard();
+      }
+    }
+
+    /* LEADERBOARDS & CLANS */
+    function renderLeaderboards() {
+      const users = getDBUsers();
+      const userList = Object.values(users).sort((a, b) => b.xp - a.xp);
+
+      const tbody = document.getElementById('leaderboardBody');
+      tbody.innerHTML = userList.map((u, i) => `
+        <tr>
+          <td>#${i + 1}</td>
+          <td><strong>${u.username}</strong></td>
+          <td><span class="role-badge role-${(u.role || 'user').replace(' ', '-')}">${u.role || 'user'}</span></td>
+          <td><span class="clan-tag">${u.clan || '-'}</span></td>
+          <td><span class="xp-pill">${u.xp} XP</span></td>
+          <td>${u.levelsBeat ? u.levelsBeat.length : 0}</td>
+        </tr>
+      `).join('');
+    }
+
+    function joinClan() {
+      if (!currentUser) return alert('Please log in first!');
+      const users = getDBUsers();
+      const user = users[currentUser];
+
+      if (user.xp < 1000) return alert('You need at least 1000 XP to set a clan tag!');
+
+      const clanTag = document.getElementById('clanInput').value.trim();
+      if (!clanTag) return;
+
+      user.clan = clanTag;
+      saveDBUsers(users);
+      updateAuthUI();
+      renderClans();
+    }
+
+    function renderClans() {
+      const users = getDBUsers();
+      const clans = {};
+
+      Object.values(users).forEach(u => {
+        if (u.clan) {
+          if (!clans[u.clan]) clans[u.clan] = { members: 0, totalXP: 0 };
+          clans[u.clan].members += 1;
+          clans[u.clan].totalXP += u.xp;
+        }
+      });
+
+      const clanList = Object.keys(clans).map(tag => ({ tag, ...clans[tag] })).sort((a, b) => b.totalXP - a.totalXP);
+      const tbody = document.getElementById('clanBody');
+
+      if (clanList.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="3" style="color:#a4b0be; text-align:center;">No clans formed yet. Reach 1000 XP to set one!</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = clanList.map(c => `
+        <tr>
+          <td><strong class="clan-tag">${c.tag}</strong></td>
+          <td>${c.members}</td>
+          <td><span class="xp-pill">${c.totalXP} XP</span></td>
+        </tr>
+      `).join('');
+    }
+
+    /* DEMON LIST RENDERING */
+    function renderDemonList() {
+      const container = document.getElementById('demon-list');
+      const submitDropdown = document.getElementById('submitDemon');
+      const adminAwardDropdown = document.getElementById('adminAwardDemon');
+
+      container.innerHTML = '';
+      submitDropdown.innerHTML = '';
+      adminAwardDropdown.innerHTML = '';
+
+      const demonList = getDemonList();
+
+      demonList.forEach((demon, index) => {
+        const xpAmount = calculateDemonXP(demon.rank);
+
+        const item = document.createElement('div');
+        item.className = 'list-item';
+        item.innerHTML = `
+          <div class="rank">#${demon.rank}</div>
+          <a href="${demon.link}" target="_blank">
+            <img src="${demon.img}" class="level-img" alt="${demon.name}">
+          </a>
+          <div class="level-info" onclick="openVictorsModal(${index})">
+            <div class="level-title">${demon.name}</div>
+            <p class="level-desc">${demon.desc}</p>
+            <div class="xp-reward-badge">+${xpAmount} XP Reward</div>
+          </div>
+        `;
+        container.appendChild(item);
+
+        const opt1 = document.createElement('option');
+        opt1.value = demon.name;
+        opt1.textContent = `#${demon.rank} - ${demon.name} (+${xpAmount} XP)`;
+        submitDropdown.appendChild(opt1);
+
+        const opt2 = document.createElement('option');
+        opt2.value = demon.name;
+        opt2.textContent = `#${demon.rank} - ${demon.name}`;
+        adminAwardDropdown.appendChild(opt2);
+      });
+    }
+
+    function openVictorsModal(index) {
+      const demonList = getDemonList();
+      const demon = demonList[index];
+      const modalTitle = document.getElementById('victorsModalTitle');
+      const victorsList = document.getElementById('victorsList');
+
+      modalTitle.textContent = `${demon.name.toUpperCase()} - Victors`;
+      victorsList.innerHTML = '';
+
+      if (demon.victors && demon.victors.length > 0) {
+        demon.victors.forEach(v => {
+          const li = document.createElement('li');
+          li.innerHTML = `<a href="${v.link}" target="_blank" style="color:#70a1ff; font-weight:bold;">${v.name}</a>`;
+          victorsList.appendChild(li);
+        });
+      } else {
+        victorsList.innerHTML = `<p style="color:#a4b0be; font-style:italic;">No recorded victors yet.</p>`;
+      }
+      openModal('victorsModal');
+    }
+
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal-overlay')) {
+        event.target.style.display = 'none';
+      }
+    };
+  </script>
+
+</body>
+</html>

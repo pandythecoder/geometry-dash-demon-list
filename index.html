@@ -310,30 +310,28 @@
       }
     ];
 
-    document.addEventListener("DOMContentLoaded", () => {
-      demonData.sort((a, b) => a.rank - b.rank);
+    demonData.sort((a, b) => a.rank - b.rank);
 
-      const demonListContainer = document.getElementById('demon-list');
-      const demonSelectDropdown = document.getElementById('demon');
+    const demonListContainer = document.getElementById('demon-list');
+    const demonSelectDropdown = document.getElementById('demon');
 
-      demonData.forEach(demon => {
-        const item = document.createElement('div');
-        item.className = 'list-item';
-        item.innerHTML = `
-          <div class="rank">#${demon.rank}</div>
-          <img src="${demon.img}" class="level-img" alt="${demon.name}">
-          <div class="level-info">
-            <a href="${demon.link}" target="_blank" class="level-title">${demon.name}</a>
-            <p class="level-desc">${demon.desc}</p>
-          </div>
-        `;
-        demonListContainer.appendChild(item);
+    demonData.forEach(demon => {
+      const item = document.createElement('div');
+      item.className = 'list-item';
+      item.innerHTML = `
+        <div class="rank">#${demon.rank}</div>
+        <img src="${demon.img}" class="level-img" alt="${demon.name}">
+        <div class="level-info">
+          <a href="${demon.link}" target="_blank" class="level-title">${demon.name}</a>
+          <p class="level-desc">${demon.desc}</p>
+        </div>
+      `;
+      demonListContainer.appendChild(item);
 
-        const option = document.createElement('option');
-        option.value = demon.name;
-        option.textContent = `#${demon.rank} - ${demon.name}`;
-        demonSelectDropdown.appendChild(option);
-      });
+      const option = document.createElement('option');
+      option.value = demon.name;
+      option.textContent = `#${demon.rank} - ${demon.name}`;
+      demonSelectDropdown.appendChild(option);
     });
   </script>
 

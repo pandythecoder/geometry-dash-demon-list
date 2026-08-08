@@ -19,10 +19,10 @@
     }
 
     header {
-      max-width: 800px;
-      margin: 0 auto 25px auto;
+      max-width: 850px;
+      margin: 0 auto 15px auto;
       text-align: center;
-      padding: 30px 10px;
+      padding: 25px 10px;
       background: linear-gradient(135deg, #1f1c2c, #928dab);
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.5);
@@ -34,17 +34,105 @@
       text-shadow: 0 0 10px rgba(0,255,255,0.5);
     }
 
-    header p {
-      color: #d1d5db;
-      margin-top: 5px;
+    /* AUTH BAR */
+    .auth-bar {
+      max-width: 850px;
+      margin: 0 auto 20px auto;
+      background: #161922;
+      border: 1px solid #2a2f3d;
+      border-radius: 8px;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
+    .user-badge {
       display: flex;
-      flex-direction: column;
-      gap: 25px;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.95rem;
+    }
+
+    .xp-pill {
+      background: #ffa502;
+      color: #000;
+      font-weight: bold;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+    }
+
+    .clan-tag {
+      color: #70a1ff;
+      font-weight: bold;
+    }
+
+    .auth-btns button {
+      background: #70a1ff;
+      color: #000;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+
+    .auth-btns button.logout {
+      background: #ff4757;
+      color: #fff;
+    }
+
+    /* NAVIGATION TABS */
+    .nav-tabs {
+      max-width: 850px;
+      margin: 0 auto 20px auto;
+      display: flex;
+      gap: 10px;
+      border-bottom: 2px solid #2a2f3d;
+      padding-bottom: 10px;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      background: #1f2430;
+      color: #a4b0be;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover, .tab-btn.active {
+      background: #00ffff;
+      color: #000;
+    }
+
+    .badge {
+      background: #ff4757;
+      color: #fff;
+      border-radius: 50%;
+      padding: 2px 7px;
+      font-size: 0.75rem;
+      margin-left: 5px;
+    }
+
+    /* CONTAINER & CARDS */
+    .container {
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
     }
 
     .card {
@@ -52,6 +140,7 @@
       border: 1px solid #2a2f3d;
       border-radius: 10px;
       padding: 20px;
+      margin-bottom: 20px;
     }
 
     .section-title {
@@ -62,6 +151,7 @@
       padding-bottom: 8px;
     }
 
+    /* DEMON LIST ITEMS */
     .list-item {
       display: flex;
       gap: 15px;
@@ -91,21 +181,26 @@
       border-radius: 6px;
       background-color: #2a2f3d;
       display: block;
+      transition: opacity 0.2s;
+    }
+
+    .level-img:hover {
+      opacity: 0.8;
     }
 
     .level-info {
       flex: 1;
+      cursor: pointer;
     }
 
     .level-title {
       font-size: 1.2rem;
       color: #ffffff;
-      text-decoration: none;
       font-weight: bold;
       text-transform: capitalize;
     }
 
-    .level-title:hover {
+    .level-info:hover .level-title {
       color: #70a1ff;
     }
 
@@ -115,6 +210,25 @@
       margin-top: 5px;
     }
 
+    /* LEADERBOARD TABLE */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #2a2f3d;
+    }
+
+    th {
+      background: #1f2430;
+      color: #00ffff;
+    }
+
+    /* RULES BOX */
     .rules-box {
       background: #1a1e29;
       border-left: 4px solid #ffa502;
@@ -140,6 +254,7 @@
       margin-bottom: 6px;
     }
 
+    /* FORMS & INPUTS */
     label {
       display: block;
       font-size: 0.85rem;
@@ -181,6 +296,72 @@
     .submit-btn:hover {
       background: #26af5f;
     }
+
+    /* INBOX ITEMS */
+    .inbox-item {
+      background: #1f2430;
+      border-left: 4px solid #00ffff;
+      padding: 14px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+
+    .inbox-item h4 {
+      color: #ffa502;
+      margin-bottom: 5px;
+    }
+
+    /* MODAL POPUPS */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: #161922;
+      border: 1px solid #3a3f52;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 450px;
+      padding: 25px;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.8rem;
+      color: #a4b0be;
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      color: #fff;
+    }
+
+    .victors-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .victors-list li {
+      background: #1f2430;
+      padding: 10px 14px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   </style>
 </head>
 <body>
@@ -190,149 +371,589 @@
     <p>Official Geometry Dash Extreme Rankings</p>
   </header>
 
+  <div class="auth-bar">
+    <div class="user-badge" id="userDisplay">
+      <span>Not Logged In</span>
+    </div>
+    <div class="auth-btns" id="authBtns">
+      <button onclick="openModal('loginModal')">Login</button>
+      <button onclick="openModal('registerModal')">Register</button>
+    </div>
+  </div>
+
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTab('list', this)">Top Levels</button>
+    <button class="tab-btn" onclick="switchTab('leaderboards', this)">Leaderboards</button>
+    <button class="tab-btn" onclick="switchTab('clans', this)">Clans</button>
+    <button class="tab-btn" onclick="switchTab('submit', this)">Submit Record</button>
+    <button class="tab-btn" onclick="switchTab('inbox', this)">Inbox <span id="inboxBadge" class="badge" style="display:none;">0</span></button>
+  </div>
+
   <main class="container">
     
-    <section class="card">
-      <h2 class="section-title">Top Levels</h2>
-      <div id="demon-list"></div>
-    </section>
+    <div id="listTab" class="tab-content active">
+      <section class="card">
+        <h2 class="section-title">Top Levels</h2>
+        <div id="demon-list"></div>
+      </section>
+    </div>
 
-    <section class="card">
-      <h2 class="section-title">Submit a Record</h2>
+    <div id="leaderboardsTab" class="tab-content">
+      <section class="card">
+        <h2 class="section-title">Player Rankings (XP & Demons)</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Player</th>
+              <th>Clan</th>
+              <th>XP</th>
+              <th>Levels Beat</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboardBody"></tbody>
+        </table>
+      </section>
+    </div>
 
-      <div class="rules-box">
-        <h3>Submission Rules</h3>
-        <ul>
-          <li><strong>Min Progress:</strong> You must have achieved at least <strong>50%</strong> completion.</li>
-          <li><strong>Cheat Indicator:</strong> Must be visibly active on-screen throughout the run.</li>
-          <li><strong>Audible Clicks:</strong> Raw click/tap audio must be clearly audible.</li>
-          <li><strong>No Cuts or Edits:</strong> Spliced, cut, or edited videos will be rejected.</li>
-          <li><strong>Supported Host:</strong> Video proof must be hosted on <strong>YouTube</strong> or <strong>Twitch</strong>.</li>
-        </ul>
-      </div>
+    <div id="clansTab" class="tab-content">
+      <section class="card">
+        <h2 class="section-title">Clans & Total Clan XP</h2>
+        <div style="margin-bottom: 15px;">
+          <input type="text" id="clanInput" placeholder="Enter Clan Tag (e.g. [PRO])" style="width: 70%; display: inline-block;">
+          <button onclick="joinClan()" class="submit-btn" style="width: 28%; display: inline-block; margin-top:0;">Set Clan</button>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Clan Tag</th>
+              <th>Members</th>
+              <th>Total XP</th>
+            </tr>
+          </thead>
+          <tbody id="clanBody"></tbody>
+        </table>
+      </section>
+    </div>
 
-      <form action="https://formsubmit.co/oliverwood051@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="New Demon List Record Submission">
-        <input type="hidden" name="_captcha" value="false">
+    <div id="submitTab" class="tab-content">
+      <section class="card">
+        <h2 class="section-title">Submit a Record</h2>
 
-        <label for="username">Geometry Dash Username:</label>
-        <input type="text" id="username" name="GD Username" placeholder="Enter your in-game name" required>
+        <div class="rules-box">
+          <h3>Submission Rules</h3>
+          <ul>
+            <li><strong>Min Progress:</strong> You must have achieved at least <strong>50%</strong> completion.</li>
+            <li><strong>Cheat Indicator:</strong> Must be visibly active on-screen throughout the run.</li>
+            <li><strong>Audible Clicks:</strong> Raw click/tap audio must be clearly audible.</li>
+            <li><strong>No Cuts or Edits:</strong> Spliced, cut, or edited videos will be rejected.</li>
+            <li><strong>Supported Host:</strong> Video proof must be hosted on <strong>YouTube</strong> or <strong>Twitch</strong>.</li>
+          </ul>
+        </div>
 
-        <label for="demon">Demon Defeated:</label>
-        <select id="demon" name="Level Defeated" required></select>
+        <p style="color:#a4b0be; font-size:0.9rem; margin-bottom:15px;">
+          Submissions are automatically sent directly to list owner <strong style="color:#00ffff;">@pandy</strong>'s inbox!
+        </p>
 
-        <label for="progress">Progress Percentage (%):</label>
-        <input type="number" id="progress" name="Progress (%)" min="50" max="100" placeholder="50 - 100" required>
+        <form onsubmit="handleSubmission(event)">
+          <label>Demon Defeated:</label>
+          <select id="submitDemon" required></select>
 
-        <label for="video">Video Proof Link (YouTube / Twitch):</label>
-        <input type="url" id="video" name="Video Link" placeholder="https://www.youtube.com/watch?v=..." required>
+          <label>Progress Percentage (%):</label>
+          <input type="number" id="submitProgress" min="50" max="100" placeholder="50 - 100" required>
 
-        <label for="notes">Additional Notes / Raw Footage Link:</label>
-        <textarea id="notes" name="Notes" rows="2" placeholder="Refresh rate, device, raw video link, etc."></textarea>
+          <label>Video Proof Link:</label>
+          <input type="url" id="submitVideo" placeholder="https://www.youtube.com/watch?v=..." required>
 
-        <button type="submit" class="submit-btn">Submit Record</button>
-      </form>
-    </section>
+          <label>Additional Notes / Raw Footage Link:</label>
+          <textarea id="submitNotes" rows="2" placeholder="Refresh rate, device, raw video link, etc."></textarea>
+
+          <button type="submit" class="submit-btn">Send Submission to @pandy</button>
+        </form>
+      </section>
+    </div>
+
+    <div id="inboxTab" class="tab-content">
+      <section class="card">
+        <h2 class="section-title">Your Inbox</h2>
+        <div id="inboxContainer"></div>
+      </section>
+    </div>
 
   </main>
 
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('loginModal')">&times;</span>
+      <h2 style="color:#00ffff; margin-bottom:15px;">Login</h2>
+      <form onsubmit="handleLogin(event)">
+        <label>Username:</label>
+        <input type="text" id="loginUsername" placeholder="@pandy" required>
+        <label>Password:</label>
+        <input type="password" id="loginPassword" required>
+        <button type="submit" class="submit-btn">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="registerModal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('registerModal')">&times;</span>
+      <h2 style="color:#00ffff; margin-bottom:15px;">Register Account</h2>
+      <form onsubmit="handleRegister(event)">
+        <label>Username:</label>
+        <input type="text" id="regUsername" placeholder="e.g. pandy or @pandy" required>
+        <label>Password:</label>
+        <input type="password" id="regPassword" required>
+        <button type="submit" class="submit-btn">Create Account</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="victorsModal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('victorsModal')">&times;</span>
+      <h2 style="color:#00ffff; margin-bottom:15px;" id="victorsModalTitle">Victors</h2>
+      <ul class="victors-list" id="victorsList"></ul>
+    </div>
+  </div>
+
   <script>
+    /* =========================================================
+       LEVEL DATA & DATABASE INITIALIZATION
+    ========================================================= */
     const demonData = [
       {
         rank: 1,
         name: "society",
         img: "society.png",
         link: "https://www.youtube.com/watch?v=3CoEaH1CM7o",
-        desc: "the new hardest geometry dash level"
+        desc: "the new hardest geometry dash level",
+        victors: [
+          { name: "@Zoink", link: "https://www.youtube.com/watch?v=3CoEaH1CM7o" },
+          { name: "@Doggie", link: "https://www.youtube.com/watch?v=3CoEaH1CM7o" }
+        ]
       },
       {
         rank: 2,
         name: "thinking space 2",
         img: "ts2.png",
         link: "https://www.youtube.com/watch?v=CELNmHwln_c",
-        desc: "the hardest level in geometry dash for 278 days"
+        desc: "the hardest level in geometry dash for 278 days",
+        victors: [
+          { name: "@Trick", link: "https://www.youtube.com/watch?v=CELNmHwln_c" }
+        ]
       },
       {
         rank: 3,
         name: "flamewall",
         img: "flamewall.png",
         link: "https://www.youtube.com/watch?v=gwNYGFmo_WY",
-        desc: "one of the longest top 100 geometry dash levels"
+        desc: "one of the longest top 100 geometry dash levels",
+        victors: []
       },
       {
         rank: 4,
         name: "amethyst",
         img: "amethyst.png",
         link: "https://www.youtube.com/watch?v=KfShSCp8vM4",
-        desc: "often thought of to be harder than thinking space 2"
+        desc: "often thought of to be harder than thinking space 2",
+        victors: []
       },
       {
         rank: 5,
         name: "tidal wave",
         img: "tw.png",
         link: "https://www.youtube.com/watch?v=frjtBcNI6dI",
-        desc: "has 200 frame perfects"
+        desc: "has 200 frame perfects",
+        victors: [
+          { name: "@Zoink", link: "https://www.youtube.com/watch?v=frjtBcNI6dI" },
+          { name: "@wpopoff", link: "https://www.youtube.com/watch?v=frjtBcNI6dI" }
+        ]
       },
       {
         rank: 6,
         name: "green bullet",
         img: "gb.png",
         link: "https://www.youtube.com/watch?v=zfTqKYeqhTo",
-        desc: "the person who beat the level (nicknam09) took 105,000 attempts+ to beat the level"
+        desc: "the person who beat the level (nicknam09) took 105,000 attempts+ to beat the level",
+        victors: [
+          { name: "@nicknam09", link: "https://www.youtube.com/watch?v=zfTqKYeqhTo" }
+        ]
       },
       {
         rank: 7,
         name: "orbit",
         img: "orbit.png",
         link: "https://www.youtube.com/watch?v=HWg8dtItGCA",
-        desc: "known for every jump being an orb"
+        desc: "known for every jump being an orb",
+        victors: []
       },
       {
         rank: 8,
         name: "nullscapes",
         img: "ns.png",
         link: "https://www.youtube.com/watch?v=C-KDhWkXlvI",
-        desc: "known for its robot"
+        desc: "known for its robot",
+        victors: []
       },
       {
         rank: 9,
         name: "Quanteuse processing",
         img: "qp.png",
         link: "https://www.youtube.com/watch?v=sRUO72zI2GQ",
-        desc: "known for its trolls"
+        desc: "known for its trolls",
+        victors: []
       },
       {
         rank: 10,
         name: "boobawamba",
         img: "bw.png",
         link: "https://www.youtube.com/watch?v=TAPij318cjE",
-        desc: "idk what to say"
+        desc: "idk what to say",
+        victors: []
       }
     ];
 
-    demonData.sort((a, b) => a.rank - b.rank);
+    function getDBUsers() {
+      const users = localStorage.getItem('gd_demon_users');
+      if (!users) {
+        // Pre-seed default players (excluding @pandy so you can claim it)
+        const initialUsers = {
+          "@Zoink": { username: "@Zoink", password: "123", xp: 5000, levelsBeat: ["society", "tidal wave"], clan: "[TOP]", inbox: [] },
+          "@Trick": { username: "@Trick", password: "123", xp: 3200, levelsBeat: ["thinking space 2"], clan: "[TOP]", inbox: [] }
+        };
+        localStorage.setItem('gd_demon_users', JSON.stringify(initialUsers));
+        return initialUsers;
+      }
+      return JSON.parse(users);
+    }
 
-    const demonListContainer = document.getElementById('demon-list');
-    const demonSelectDropdown = document.getElementById('demon');
+    function saveDBUsers(users) {
+      localStorage.setItem('gd_demon_users', JSON.stringify(users));
+    }
 
-    demonData.forEach(demon => {
-      const item = document.createElement('div');
-      item.className = 'list-item';
-      item.innerHTML = `
-        <div class="rank">#${demon.rank}</div>
-        <img src="${demon.img}" class="level-img" alt="${demon.name}">
-        <div class="level-info">
-          <a href="${demon.link}" target="_blank" class="level-title">${demon.name}</a>
-          <p class="level-desc">${demon.desc}</p>
-        </div>
-      `;
-      demonListContainer.appendChild(item);
+    let currentUser = localStorage.getItem('gd_current_user') || null;
 
-      const option = document.createElement('option');
-      option.value = demon.name;
-      option.textContent = `#${demon.rank} - ${demon.name}`;
-      demonSelectDropdown.appendChild(option);
+    /* =========================================================
+       APP INITIALIZATION
+    ========================================================= */
+    document.addEventListener("DOMContentLoaded", () => {
+      demonData.sort((a, b) => a.rank - b.rank);
+      renderDemonList();
+      renderLeaderboards();
+      renderClans();
+      updateAuthUI();
+      renderInbox();
     });
+
+    /* =========================================================
+       UI SWITCHING & MODALS
+    ========================================================= */
+    function switchTab(tabName, btnEl) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+      document.getElementById(`${tabName}Tab`).classList.add('active');
+      if (btnEl) btnEl.classList.add('active');
+
+      if (tabName === 'leaderboards') renderLeaderboards();
+      if (tabName === 'clans') renderClans();
+      if (tabName === 'inbox') renderInbox();
+    }
+
+    function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+    /* =========================================================
+       AUTHENTICATION SYSTEM
+    ========================================================= */
+    function updateAuthUI() {
+      const users = getDBUsers();
+      const userDisplay = document.getElementById('userDisplay');
+      const authBtns = document.getElementById('authBtns');
+
+      if (currentUser && users[currentUser]) {
+        const u = users[currentUser];
+        userDisplay.innerHTML = `
+          <strong>${u.username}</strong>
+          ${u.clan ? `<span class="clan-tag">${u.clan}</span>` : ''}
+          <span class="xp-pill">${u.xp} XP</span>
+          <span>(${u.levelsBeat.length} Demons)</span>
+        `;
+        authBtns.innerHTML = `<button class="logout" onclick="logout()">Logout</button>`;
+
+        // Update Inbox Badge
+        const badge = document.getElementById('inboxBadge');
+        if (u.inbox && u.inbox.length > 0) {
+          badge.textContent = u.inbox.length;
+          badge.style.display = 'inline-block';
+        } else {
+          badge.style.display = 'none';
+        }
+      } else {
+        userDisplay.innerHTML = `<span>Not Logged In</span>`;
+        authBtns.innerHTML = `
+          <button onclick="openModal('loginModal')">Login</button>
+          <button onclick="openModal('registerModal')">Register</button>
+        `;
+        document.getElementById('inboxBadge').style.display = 'none';
+      }
+    }
+
+    function handleRegister(e) {
+      e.preventDefault();
+      let user = document.getElementById('regUsername').value.trim();
+      if (!user.startsWith('@')) user = '@' + user;
+      const pass = document.getElementById('regPassword').value;
+
+      const users = getDBUsers();
+      
+      // Block registration only if account has a non-empty password already set
+      if (users[user] && users[user].password !== "") {
+        alert('Username already exists!');
+        return;
+      }
+
+      // Preserve inbox if items were queued before registering
+      const existingInbox = users[user] ? users[user].inbox : [{ from: "System", message: "Welcome to the Demon List! Complete levels to earn XP." }];
+
+      users[user] = {
+        username: user,
+        password: pass,
+        xp: 100,
+        levelsBeat: [],
+        clan: user.toLowerCase() === "@pandy" ? "[ADMIN]" : "",
+        inbox: existingInbox
+      };
+
+      saveDBUsers(users);
+      currentUser = user;
+      localStorage.setItem('gd_current_user', currentUser);
+      closeModal('registerModal');
+      updateAuthUI();
+      alert(`Account created successfully! Logged in as ${user}`);
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      let user = document.getElementById('loginUsername').value.trim();
+      if (!user.startsWith('@')) user = '@' + user;
+      const pass = document.getElementById('loginPassword').value;
+
+      const users = getDBUsers();
+      if (users[user] && users[user].password === pass) {
+        currentUser = user;
+        localStorage.setItem('gd_current_user', currentUser);
+        closeModal('loginModal');
+        updateAuthUI();
+        alert(`Welcome back, ${user}!`);
+      } else {
+        alert('Invalid username or password!');
+      }
+    }
+
+    function logout() {
+      currentUser = null;
+      localStorage.removeItem('gd_current_user');
+      updateAuthUI();
+      renderInbox();
+    }
+
+    /* =========================================================
+       SUBMISSIONS & @PANDY INBOX LOGIC
+    ========================================================= */
+    function handleSubmission(e) {
+      e.preventDefault();
+      const demon = document.getElementById('submitDemon').value;
+      const progress = document.getElementById('submitProgress').value;
+      const video = document.getElementById('submitVideo').value;
+      const notes = document.getElementById('submitNotes').value || "None";
+
+      const submitter = currentUser || "@Guest";
+      const users = getDBUsers();
+
+      const notification = {
+        from: submitter,
+        message: `New record submission for ${demon} (${progress}%)!\nVideo: ${video}\nNotes: ${notes}`,
+        date: new Date().toLocaleTimeString()
+      };
+
+      // Queue for @pandy even if @pandy isn't registered yet
+      if (!users["@pandy"]) {
+        users["@pandy"] = {
+          username: "@pandy",
+          password: "",
+          xp: 0,
+          levelsBeat: [],
+          clan: "[ADMIN]",
+          inbox: []
+        };
+      }
+
+      users["@pandy"].inbox.unshift(notification);
+      saveDBUsers(users);
+
+      alert(`Submission sent successfully to @pandy's inbox!`);
+      e.target.reset();
+      updateAuthUI();
+    }
+
+    function renderInbox() {
+      const container = document.getElementById('inboxContainer');
+      if (!currentUser) {
+        container.innerHTML = `<p style="color:#a4b0be;">Please log in to view your inbox messages.</p>`;
+        return;
+      }
+
+      const users = getDBUsers();
+      const user = users[currentUser];
+
+      if (!user || !user.inbox || user.inbox.length === 0) {
+        container.innerHTML = `<p style="color:#a4b0be;">Your inbox is empty.</p>`;
+        return;
+      }
+
+      container.innerHTML = user.inbox.map(msg => `
+        <div class="inbox-item">
+          <h4>From: ${msg.from} <span style="font-size:0.75rem; color:#a4b0be; float:right;">${msg.date || ''}</span></h4>
+          <p style="white-space: pre-line;">${msg.message}</p>
+        </div>
+      `).join('');
+    }
+
+    /* =========================================================
+       LEADERBOARDS & CLANS
+    ========================================================= */
+    function renderLeaderboards() {
+      const users = getDBUsers();
+      const userList = Object.values(users)
+        .filter(u => u.password !== "")
+        .sort((a, b) => b.xp - a.xp);
+
+      const tbody = document.getElementById('leaderboardBody');
+      if (userList.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" style="color:#a4b0be;">No registered players yet.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = userList.map((u, i) => `
+        <tr>
+          <td>#${i + 1}</td>
+          <td><strong>${u.username}</strong></td>
+          <td><span class="clan-tag">${u.clan || '-'}</span></td>
+          <td><span class="xp-pill">${u.xp} XP</span></td>
+          <td>${u.levelsBeat.length}</td>
+        </tr>
+      `).join('');
+    }
+
+    function joinClan() {
+      if (!currentUser) { alert('Please log in first!'); return; }
+      const clanTag = document.getElementById('clanInput').value.trim();
+
+      const users = getDBUsers();
+      users[currentUser].clan = clanTag;
+      saveDBUsers(users);
+
+      updateAuthUI();
+      renderClans();
+      renderLeaderboards();
+      alert(`Clan updated to ${clanTag}!`);
+    }
+
+    function renderClans() {
+      const users = getDBUsers();
+      const clans = {};
+
+      Object.values(users).forEach(u => {
+        if (u.clan && u.password !== "") {
+          if (!clans[u.clan]) clans[u.clan] = { members: 0, totalXP: 0 };
+          clans[u.clan].members += 1;
+          clans[u.clan].totalXP += u.xp;
+        }
+      });
+
+      const clanList = Object.keys(clans)
+        .map(tag => ({ tag, ...clans[tag] }))
+        .sort((a, b) => b.totalXP - a.totalXP);
+
+      const tbody = document.getElementById('clanBody');
+      if (clanList.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="3" style="color:#a4b0be;">No clans formed yet.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = clanList.map(c => `
+        <tr>
+          <td><strong class="clan-tag">${c.tag}</strong></td>
+          <td>${c.members}</td>
+          <td><span class="xp-pill">${c.totalXP} XP</span></td>
+        </tr>
+      `).join('');
+    }
+
+    /* =========================================================
+       DEMON LIST RENDERING
+    ========================================================= */
+    function renderDemonList() {
+      const demonListContainer = document.getElementById('demon-list');
+      const submitDropdown = document.getElementById('submitDemon');
+
+      demonListContainer.innerHTML = '';
+      submitDropdown.innerHTML = '';
+
+      demonData.forEach((demon, index) => {
+        const item = document.createElement('div');
+        item.className = 'list-item';
+        item.innerHTML = `
+          <div class="rank">#${demon.rank}</div>
+          <a href="${demon.link}" target="_blank" title="Click to watch level video">
+            <img src="${demon.img}" class="level-img" alt="${demon.name}">
+          </a>
+          <div class="level-info" onclick="openVictorsModal(${index})">
+            <div class="level-title">${demon.name}</div>
+            <p class="level-desc">${demon.desc}</p>
+          </div>
+        `;
+        demonListContainer.appendChild(item);
+
+        const option = document.createElement('option');
+        option.value = demon.name;
+        option.textContent = `#${demon.rank} - ${demon.name}`;
+        submitDropdown.appendChild(option);
+      });
+    }
+
+    function openVictorsModal(index) {
+      const demon = demonData[index];
+      const modalTitle = document.getElementById('victorsModalTitle');
+      const victorsList = document.getElementById('victorsList');
+
+      modalTitle.textContent = `${demon.name.toUpperCase()} - Victors`;
+      victorsList.innerHTML = '';
+
+      if (demon.victors && demon.victors.length > 0) {
+        demon.victors.forEach(v => {
+          const li = document.createElement('li');
+          li.innerHTML = `
+            <a href="${v.link}" target="_blank" style="color:#70a1ff; font-weight:bold;">${v.name}</a>
+            <span style="font-size:0.8rem; color:#a4b0be;">Click for video</span>
+          `;
+          victorsList.appendChild(li);
+        });
+      } else {
+        victorsList.innerHTML = `<p style="color:#a4b0be; font-style:italic;">No recorded victors yet.</p>`;
+      }
+      openModal('victorsModal');
+    }
+
+    // Close modal on outside click
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal-overlay')) {
+        event.target.style.display = 'none';
+      }
+    };
   </script>
 
 </body>
